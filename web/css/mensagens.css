@@ -1,0 +1,40 @@
+/* 
+    Created on : 28/06/2017, 14:24:28
+    Author     : Aluno
+*/
+
+.sucesso{
+    animation-name: animacao_sucesso;
+    animation-duration: 10s;
+}
+
+@keyframes animacao_sucesso {
+
+    from{
+        
+    }
+
+    to{
+        height: 0px;
+        display: none;
+    }
+
+}
+
+.erro{
+    animation-name: animacao_erro;
+    animation-duration: 10s;
+}
+
+@keyframes animacao_erro {
+
+    from{
+        
+    }
+
+    to{
+        height: 0px;
+        display: none;
+    }
+
+}
