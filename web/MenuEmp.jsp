@@ -28,7 +28,7 @@
             <a href="javascript:void(0)" onclick="w3_close()" class="w3-button w3-hide-large w3-display-topleft" style="width:100%;font-size:22px">Close Menu</a>
             <center>
                 <div class="w3-container">
-                    <h3 class="w3-padding-64"><b>Bem-Vindo<br>Usuário</b></h3>
+                    <h3 class="w3-padding-64"><b>Bem-Vindo<br>$(usuario)</b></h3>
                 </div>
             </center>
             <div class="w3-bar-block">

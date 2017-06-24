@@ -27,6 +27,7 @@
 
         <!-- Header -->
         <header id="top" class="header">
+            <form>
 
             <div class="container" style="margin-top: 100px; opacity: 1;">
                 <div class="row">
@@ -36,28 +37,28 @@
 
                                 <!-- Cada campo -->
                                 <div class="group">
-                                    <input requered name="nome" type="text" required>
+                                    <input name="nome" type="text" required="">
                                     <span class="highlight"></span>
                                     <span class="bar"></span>
                                     <label><span class="span-input">Nome</span></label>
                                 </div>
                                 <div class="group">
-                                    <input requered name="sobrenome" type="text" required>
+                                    <input name="sobrenome" type="text" required="">
                                     <span class="highlight"></span>
                                     <span class="bar"></span>
                                     <label><span class="span-input">Sobrenome</span></label>
                                 </div>
                                 <div class="group">
-                                    <input requered name="email" type="text" required>
+                                    <input name="email" type="email" required="">
                                     <span class="highlight"></span>
                                     <span class="bar"></span>
                                     <label><span class="span-input">E-mail</span></label>
                                 </div>
                                 <div class="group" >
-                                    <input name="pathimg" type="file" accept="image/*">
+                                    <input name="pathimg" type="file" accept="image/*" required="">
                                 </div>
                                 <div class="group">
-                                    <input requered name="cpf" type="text" required>
+                                    <input name="cpf" type="text" required="" pattern="^([0-9]){3}\.([0-9]){3}\.([0-9]){3}-([0-9]){2}$">
                                     <span class="highlight"></span>
                                     <span class="bar"></span>
                                     <label><span class="span-input">CPF</span></label>
@@ -66,26 +67,26 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="group">
-                                    <input requered name="aniversario" type="date" required>
+                                    <input name="aniversario" type="date" required="">
                                     <span class="highlight"></span>
                                     <span class="bar"></span>
                                     <label><span class="span-input">Data de Nascimento</span></label>
                                 </div>
                                 <div class="group">
-                                    <input requered name="senha" type="password" required>
+                                    <input name="senha" type="password" required="">
                                     <span class="highlight"></span>
                                     <span class="bar"></span>
                                     <label><span class="span-input">Senha</span></label>
                                 </div>
                                 <div class="group">
-                                    <input requered name="consenha" type="password" required>
+                                    <input name="consenha" type="password" required="">
                                     <span class="highlight"></span>
                                     <span class="bar"></span>
                                     <label><span class="span-input">Confirmar senha</span></label>
                                 </div>
-                                <div>
-                                    <input type="radio" name="gender" value="male"><label><span class="span-input">Mulher</span></label><br>
-                                    <input type="radio" name="gender" value="female"><label><span class="span-input">Homem</span></label><br>
+                                <div >
+                                    <input  type="radio" name="gender" value="male" required=""><label><span class="span-input">Mulher</span></label><br>
+                                    <input  type="radio" name="gender" value="female" required="" ><label><span class="span-input">Homem</span></label><br>
                                 </div><br>
                                 <br>
                                 <br>
@@ -95,6 +96,11 @@
                                     </span>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </form>
 
                             </header>
 

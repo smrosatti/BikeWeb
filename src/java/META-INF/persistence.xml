@@ -2,18 +2,17 @@
 <persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
   <persistence-unit name="bikefoodPU" transaction-type="RESOURCE_LOCAL">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
-    <jar-file>lib/postgresql-9.2-1002.jdbc4.jar</jar-file>
-    <class>br.com.bikefood.model.Bikefood</class>
-    <class>br.com.bikefood.model.City</class>
-    <class>br.com.bikefood.model.Country</class>
-    <class>br.com.bikefood.model.Gender</class>
-    <class>br.com.bikefood.model.Location</class>
-    <class>br.com.bikefood.model.Product</class>
-    <class>br.com.bikefood.model.State</class>
-    <class>br.com.bikefood.model.UserType</class>
-    <class>br.com.bikefood.model.Userr</class>
-    <class>br.com.bikefood.model.BFType</class>
-    <class>br.com.bikefood.model.ModelBase</class>
+    <class>Model.Bikefood</class>
+    <class>Model.City</class>
+    <class>Model.Country</class>
+    <class>Model.Gender</class>
+    <class>Model.Location</class>
+    <class>Model.Product</class>
+    <class>Model.State</class>
+    <class>Model.UserType</class>
+    <class>Model.Userr</class>
+    <class>Model.BFType</class>
+    <class>Model.ModelBase</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/bikefood"/>
       <property name="javax.persistence.jdbc.user" value="postgres"/>

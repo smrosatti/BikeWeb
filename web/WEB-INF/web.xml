@@ -4,9 +4,25 @@
         <servlet-name>LoginServlet</servlet-name>
         <servlet-class>Servlets.LoginServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>CadastroEmpServlet</servlet-name>
+        <servlet-class>Servlets.CadastroEmpServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CadastroCliServlet</servlet-name>
+        <servlet-class>Servlets.CadastroCliServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/LoginServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CadastroEmpServlet</servlet-name>
+        <url-pattern>/CadastroEmpServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CadastroCliServlet</servlet-name>
+        <url-pattern>/CadastroCliServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

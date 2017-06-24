@@ -20,37 +20,41 @@
     <script src="bootstrap/js/bootstrap.min.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
     <body style="background: url('./Image/rua.jpg'); background-repeat: no-repeat; background-attachment: fixed; background-size: 100%;">
+        
         <!-- Menu Bar ( topo ) -->
         <div class="w3-bar w3-black">
             <a href="index.html" class="w3-bar-item w3-button">Home</a>
-
             <a href="CadastroEmp.jsp" class="w3-bar-item w3-button">Cadastro Empreendedor</a>
             <a href="Cadastrocli.jsp" class="w3-bar-item w3-button">Cadastro Cliente</a>            
         </div><br>
 
         <header id="top" class="header" style="align-items: center">
+            
             <center>
                 <br>
                 <center><label><span class="span-input text-uppercase">Login</span></label></center>
-                <div class="container" style="margin-top: 100px; opacity: 1;">
+                <div class="container" style="margin-top: 50px; opacity: 1;">
                     <div class="row">
-                        <div class="col-md-6 " style="background-color: black; padding: 30px 20px; opacity: 0.9;">
+                        <div class="col-md-offset-3 col-md-6" style="background-color: black; padding: 30px 20px; opacity: 0.9;">
                             <div class="form-login" style="margin: 20px;">
-
-
-                                <!-- Cada campo -->
-                                <div class="group">
-                                    <input requered name="email" type="text" required>
-                                    <span class="highlight"></span>
-                                    <span class="bar"></span>
-                                    <label><span class="span-input">Email</span></label>
-                                </div>
-                                <div class="group">
-                                    <input requered name="senha" type="password" required>
-                                    <span class="highlight"></span>
-                                    <span class="bar"></span>
-                                    <label><span class="span-input">Senha</span></label>
-                                </div>
+                                <form  action="LoginServlet" method="GET" class="form-group">
+                                    <!-- Cada campo -->
+                                    <div class="group">
+                                        <input name="email" type="email" required="">
+                                        <span class="highlight"></span>
+                                        <span class="bar"></span>
+                                        <label ><span class="span-input">Email</span></label>
+                                    </div>
+                                    <div class="group">
+                                        <input name="senha" type="password" required="">
+                                        <span class="highlight"></span>
+                                        <span class="bar"></span>
+                                        <label ><span class="span-input">Senha</span></label>
+                                    </div>
+                                    <div class="group">
+                                        <button type="submit" class="w3-btn btn-primary" >Login</button>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -135,6 +139,10 @@
             }
             // Enable map zooming with mouse scroll when the user clicks the map
             $('.map').on('click', onMapClickHandler);
+            
+            function NotExist() {
+                   alert("Email ou senha incorretos!"); 
+            }
         </script>
     </body>
 </html>

@@ -6,11 +6,14 @@
 package Servlets;
 
 import Dal.Dal;
-import Model.UserValidation;
+import Model.Gender;
+import Model.UserType;
 import Model.Userr;
 import java.io.IOException;
-import java.util.ArrayList;
-import javax.servlet.RequestDispatcher;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Date;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -20,9 +23,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author SARA
  */
-public class LoginServlet extends HttpServlet {
-
-    private Userr u = new Userr();
+public class CadastroCliServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,45 +38,40 @@ public class LoginServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try {
-            System.out.println("\n ESTOU FUNFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANDOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO \n");
-            
-            Dal dal = new Dal();
-            ArrayList<Userr> usuarios = new ArrayList(dal.getList(u));
-
-            String login = request.getParameter("email");
+            String nome = request.getParameter("nome");
+            String sobrenome = request.getParameter("sobrenome");
+            String email = request.getParameter("email");
+            String gender = request.getParameter("gender");
             String senha = request.getParameter("senha");
-            
-            UserValidation uv = new UserValidation();
-            String hash = uv.hashpass(senha);
-            
-            System.out.println("Nome: "+ login);
-            System.out.println("Email: "+senha);
+            String consenha = request.getParameter("consenha");
+            String aniversario = request.getParameter("aniversario");
+            String img = request.getParameter("pathimg");
+            System.out.println(aniversario);
 
-            for (int i = 0; i < usuarios.size(); i++) {
-                if (usuarios.get(i).getEmail().equals(login) && usuarios.get(i).getPassword().equals(hash)) {
+            if (senha.equals(consenha)) {
+                Gender genero = new Gender();
 
-                    u = usuarios.get(i);
+                Date bt = new SimpleDateFormat("yyyy-MM-dd").parse(aniversario);
 
-                    System.out.println("OLA: " + u.getName());
+                LocalDate dt = bt.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 
-                    if (u.getIdType().getUserType().equals("Default")) {
+                UserType ut = new UserType();
+                ut.setIdType(2L);       
+                
+            /*   Userr u = new Userr(nome, sobrenome, senha, genero, ut, "cliente", email, dt, img);
+            Dal dal = new Dal();
+            dal.create(u);*/
 
-                        RequestDispatcher rd = request.getRequestDispatcher("MenuCli.jsp");
-                        rd.forward(request, response);
-
-                    } else if (u.getIdType().getUserType().equals("Emp")){
-
-                        RequestDispatcher rd = request.getRequestDispatcher("MenuEmp.jsp");
-                        rd.forward(request, response);
-                    }
-                    
-                } else if (i + 1 == usuarios.size()) {
-                    System.out.println("não existe");
-                    
+                if (gender.equals("male")) {
+                    genero.setIdGender(1L);
+                } else {
+                    genero.setIdGender(2L);
                 }
+            } else {
+                System.out.println("senha não coincide");
             }
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (Exception ee) {
+            ee.printStackTrace();
         }
     }
 

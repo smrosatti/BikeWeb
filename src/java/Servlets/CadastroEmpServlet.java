@@ -5,12 +5,8 @@
  */
 package Servlets;
 
-import Dal.Dal;
-import Model.UserValidation;
-import Model.Userr;
 import java.io.IOException;
-import java.util.ArrayList;
-import javax.servlet.RequestDispatcher;
+import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -20,9 +16,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author SARA
  */
-public class LoginServlet extends HttpServlet {
-
-    private Userr u = new Userr();
+public class CadastroEmpServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,46 +30,17 @@ public class LoginServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try {
-            System.out.println("\n ESTOU FUNFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANDOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO \n");
-            
-            Dal dal = new Dal();
-            ArrayList<Userr> usuarios = new ArrayList(dal.getList(u));
-
-            String login = request.getParameter("email");
-            String senha = request.getParameter("senha");
-            
-            UserValidation uv = new UserValidation();
-            String hash = uv.hashpass(senha);
-            
-            System.out.println("Nome: "+ login);
-            System.out.println("Email: "+senha);
-
-            for (int i = 0; i < usuarios.size(); i++) {
-                if (usuarios.get(i).getEmail().equals(login) && usuarios.get(i).getPassword().equals(hash)) {
-
-                    u = usuarios.get(i);
-
-                    System.out.println("OLA: " + u.getName());
-
-                    if (u.getIdType().getUserType().equals("Default")) {
-
-                        RequestDispatcher rd = request.getRequestDispatcher("MenuCli.jsp");
-                        rd.forward(request, response);
-
-                    } else if (u.getIdType().getUserType().equals("Emp")){
-
-                        RequestDispatcher rd = request.getRequestDispatcher("MenuEmp.jsp");
-                        rd.forward(request, response);
-                    }
-                    
-                } else if (i + 1 == usuarios.size()) {
-                    System.out.println("não existe");
-                    
-                }
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
+        try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet CadastroEmpServlet</title>");            
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet CadastroEmpServlet at " + request.getContextPath() + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
         }
     }
 
