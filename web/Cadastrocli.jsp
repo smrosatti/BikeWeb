@@ -37,6 +37,20 @@
                 <div class="row">
                     <div class="col-md-12" style="background-color: black; padding: 30px 20px; opacity: 0.9;">
                         <form action="CadastroCliServlet" method="GET" class="form-group">
+                            <%
+                                try {
+                                Boolean erro = (Boolean) request.getAttribute("erro");
+                                if (erro) {
+                            %>
+                            <div class="alert alert-warning alert-dismissible" role="alert">
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <strong>Erro!</strong> Confirmação da senha incorreta!
+                            </div>
+                            <% }
+                                } catch (Exception ex) {
+                                    ex.getMessage();
+                                }
+                            %>
                             <div class="form-login" style="margin: 20px;">
                                 <div class="col-md-6">
                                     <!-- Cada campo -->

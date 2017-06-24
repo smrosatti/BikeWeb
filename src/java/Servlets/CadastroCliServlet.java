@@ -14,6 +14,7 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -56,12 +57,11 @@ public class CadastroCliServlet extends HttpServlet {
                 LocalDate dt = bt.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 
                 UserType ut = new UserType();
-                ut.setIdType(2L);       
-                
-            /*   Userr u = new Userr(nome, sobrenome, senha, genero, ut, "cliente", email, dt, img);
+                ut.setIdType(2L);
+
+                /*   Userr u = new Userr(nome, sobrenome, senha, genero, ut, "cliente", email, dt, img);
             Dal dal = new Dal();
             dal.create(u);*/
-
                 if (gender.equals("male")) {
                     genero.setIdGender(1L);
                 } else {
@@ -69,6 +69,9 @@ public class CadastroCliServlet extends HttpServlet {
                 }
             } else {
                 System.out.println("senha não coincide");
+                request.setAttribute("erro", true);
+                RequestDispatcher rd = request.getRequestDispatcher("Cadastrocli.jsp");
+                rd.forward(request, response);
             }
         } catch (Exception ee) {
             ee.printStackTrace();
