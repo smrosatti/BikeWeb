@@ -9,8 +9,8 @@ import Dal.Dal;
 import Model.Userr;
 import java.io.IOException;
 import java.util.ArrayList;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -19,9 +19,9 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author SARA
  */
-@WebServlet(name = "ServletLogin", urlPatterns = {"/ServletLogin"})
-public class ServletLogin extends HttpServlet {
-    private Userr u;
+public class LoginServlet extends HttpServlet {
+
+    private Userr u = new Userr();
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,8 +35,32 @@ public class ServletLogin extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-       Dal dal = new Dal();
-      
+        Dal dal = new Dal();
+        ArrayList<Userr> usuarios = new ArrayList(dal.getList(u));
+
+        String login = request.getParameter("email");
+        String senha = request.getParameter("senha");
+        
+        for(int i = 0; i<usuarios.size(); i++){
+            if(usuarios.get(i).getEmail().equals(login) && usuarios.get(i).getPassword().equals(senha)){
+                
+            u = usuarios.get(i);
+            
+                if(u.getIdType().getUserType().toLowerCase().equals("Default")){
+                   
+                 RequestDispatcher rd = request.getRequestDispatcher("MenuCli.jsp");
+                    rd.forward(request, response); 
+                    
+                }else{
+                   
+                 RequestDispatcher rd = request.getRequestDispatcher("MenuEmp.jsp");
+                    rd.forward(request, response); 
+                }
+            
+            }else if(i+1 == usuarios.size()){
+            
+        }
+    }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

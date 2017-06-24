@@ -1,5 +1,5 @@
 <html>
-    <title>Cadastro de empresas</title>
+    <title>Cadastro de Empreendedores</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="UTF-8">
@@ -17,13 +17,13 @@
     </head>
 
     <body style="background: url('./Image/rua.jpg'); background-repeat: no-repeat; background-attachment: fixed; background-size: 100%;">
-        
-         <!-- Menu Bar ( topo ) -->
-    <div class="w3-bar w3-black">
-        <a href="index.html" class="w3-bar-item w3-button">Home</a>
-        <a href="Login.jsp" class="w3-bar-item w3-button">Login</a>
-        <a href="Cadastrocli.jsp" class="w3-bar-item w3-button">Cadastro Cliente</a>            
-    </div><br>
+
+        <!-- Menu Bar ( topo ) -->
+        <div class="w3-bar w3-black">
+            <a href="index.html" class="w3-bar-item w3-button">Home</a>
+            <a href="Login.jsp" class="w3-bar-item w3-button">Login</a>
+            <a href="Cadastrocli.jsp" class="w3-bar-item w3-button">Cadastro Cliente</a>            
+        </div><br>
 
         <!-- Header -->
         <header id="top" class="header">
@@ -56,6 +56,12 @@
                                 <div class="group" >
                                     <input name="pathimg" type="file" accept="image/*">
                                 </div>
+                                <div class="group">
+                                    <input requered name="cpf" type="text" required>
+                                    <span class="highlight"></span>
+                                    <span class="bar"></span>
+                                    <label><span class="span-input">CPF</span></label>
+                                </div>
 
                             </div>
                             <div class="col-md-6">
@@ -81,9 +87,11 @@
                                     <input type="radio" name="gender" value="male"><label><span class="span-input">Mulher</span></label><br>
                                     <input type="radio" name="gender" value="female"><label><span class="span-input">Homem</span></label><br>
                                 </div><br>
+                                <br>
+                                <br>
                                 <div class="wrapper">
                                     <span class="group-btn">     
-                                        <a href="#" class="btn btn-primary btn-md">Cadastrar<i class="fa fa-sign-in"></i></a>
+                                        <a href="#" class="w3-btn btn-primary btn-md">Cadastrar<i class="fa fa-sign-in"></i></a>
                                     </span>
                                 </div>
                             </div>

@@ -52,7 +52,7 @@
         <div class="w3-main" style="margin-left:340px;margin-right:40px">
 
             <!-- Header -->
-            <div class="w3-container" style="margin-top:80px" id="showcase">
+            <div class="w3-container" style="margin-top:40px" id="showcase">
                 <h1 class="w3-xxlarge"><b>Bem - Vindo: </b></h1>
                 <center>
                 <hr style="width:150px;border:5px solid blue" class="w3-round">
