@@ -46,7 +46,7 @@
                                 <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                                 <strong>Erro!</strong> Confirmação da senha incorreta!
                             </div>
-                            <% }
+                                <% }
                                 } catch (Exception ex) {
                                     ex.getMessage();
                                 }

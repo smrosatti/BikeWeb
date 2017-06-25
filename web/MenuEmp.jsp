@@ -4,7 +4,12 @@
     Author     : Aluno
 --%>
 
+<%@page import="Servlets.LoginServlet"%>
+<%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="Model.Userr" %>
+<%@page import="Dal.Dal" %>
+<%@page import="Model.Bikefood" %>
 <!DOCTYPE html>
 <html>
     <title>Menu Empreendedor</title>
@@ -22,13 +27,14 @@
         .w3-half img:hover{opacity:1}
     </style>
     <body>
-
+        <% Userr us = (Userr) request.getAttribute("user");%>
+        
         <!-- Sidebar/menu -->
         <nav class="w3-sidebar w3-black w3-collapse w3-top w3-large w3-padding" style="z-index:3;width:300px;font-weight:bold;" id="mySidebar"><br>
             <a href="javascript:void(0)" onclick="w3_close()" class="w3-button w3-hide-large w3-display-topleft" style="width:100%;font-size:22px">Close Menu</a>
             <center>
                 <div class="w3-container">
-                    <h3 class="w3-padding-64"><b>Bem-Vindo<br>$(usuario)</b></h3>
+                    <h3 class="w3-padding-64"><b>Bem-Vindo<br>${nome_user}</b></h3>
                 </div>
             </center>
             <div class="w3-bar-block">
@@ -72,32 +78,30 @@
 
                     <!-- Wrapper for slides -->
                     <div class="carousel-inner">
+                        <%  Dal dal = new Dal();
+                        
+                            ArrayList<Bikefood> ar = new ArrayList(dal.getBikes((int) us.getId()));
+                            for(int i = 0; i<ar.size(); i++){
+                        %>
                         <div class="item active">
-                            <img src="./Image/bk.jpg" alt="Bikefood" style="width:100%;">
+                            <img src=<% ar.get(i).getImg();%> alt="Bikefood" style="width:100%;">
                         </div>
-
-                        <div class="item ">
-                            <img src="./Image/rua.jpg" alt="Bikefood" style="width:100%;">
-                        </div>
-
-                        <div class="item">
-                            <img src="./Image/fd.jpg" alt="New york" style="width:100%;">
-                        </div>
+                        <%};%>
                     </div>
 
                     <!-- Left and right controls -->
                     <a class="left carousel-control" href="#myCarousel" data-slide="prev">
                         <span class="glyphicon glyphicon-chevron-left"></span>
-                        <span class="sr-only">Previous</span>
+                        <span class="sr-only">Anterior</span>
                     </a>
                     <a class="right carousel-control" href="#myCarousel" data-slide="next">
                         <span class="glyphicon glyphicon-chevron-right"></span>
-                        <span class="sr-only">Next</span>
+                        <span class="sr-only">Próximo</span>
                     </a>
                 </div>
             </div>
 
-            <!-- Photo grid (modal) -->
+            <!-- 
             <div class="w3-row-padding">
                 <div class="w3-half">
                     <img src="/w3images/kitchenconcrete.jpg" style="width:100%" onclick="onClick(this)" alt="Concrete meets bricks">
@@ -111,6 +115,7 @@
                     <img src="/w3images/livingroom2.jpg" style="width:100%" onclick="onClick(this)" alt="Scandinavian design">
                 </div>
             </div>
+             -->
 
             <!-- Modal for full size images on click-->
             <div id="modal01" class="w3-modal w3-black" style="padding-top:0" onclick="this.style.display = 'none'">

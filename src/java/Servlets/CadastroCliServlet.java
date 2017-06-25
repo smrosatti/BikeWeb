@@ -8,6 +8,7 @@ package Servlets;
 import Dal.Dal;
 import Model.Gender;
 import Model.UserType;
+import Model.UserValidation;
 import Model.Userr;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -51,6 +52,10 @@ public class CadastroCliServlet extends HttpServlet {
 
             if (senha.equals(consenha)) {
                 Gender genero = new Gender();
+                
+                UserValidation uv = new UserValidation();
+                senha = uv.hashpass(senha);
+                
 
                 Date bt = new SimpleDateFormat("yyyy-MM-dd").parse(aniversario);
 
@@ -59,14 +64,15 @@ public class CadastroCliServlet extends HttpServlet {
                 UserType ut = new UserType();
                 ut.setIdType(2L);
 
-                /*   Userr u = new Userr(nome, sobrenome, senha, genero, ut, "cliente", email, dt, img);
-            Dal dal = new Dal();
-            dal.create(u);*/
+                Userr u = new Userr(nome, sobrenome, senha, genero, ut, "cliente", email, dt, img);
+                Dal dal = new Dal();
+                dal.create(u);
                 if (gender.equals("male")) {
                     genero.setIdGender(1L);
                 } else {
                     genero.setIdGender(2L);
                 }
+                
             } else {
                 System.out.println("senha não coincide");
                 request.setAttribute("erro", true);

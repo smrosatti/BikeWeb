@@ -6,15 +6,21 @@
 package Servlets;
 
 import Dal.Dal;
+import Model.Bikefood;
 import Model.UserValidation;
 import Model.Userr;
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.fileupload.disk.DiskFileItemFactory;
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
 /**
  *
@@ -38,18 +44,18 @@ public class LoginServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try {
             System.out.println("\n ESTOU FUNFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANDOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO \n");
-            
+
             Dal dal = new Dal();
             ArrayList<Userr> usuarios = new ArrayList(dal.getList(u));
 
             String login = request.getParameter("email");
             String senha = request.getParameter("senha");
-            
+
             UserValidation uv = new UserValidation();
             String hash = uv.hashpass(senha);
-            
-            System.out.println("Nome: "+ login);
-            System.out.println("Email: "+senha);
+
+            System.out.println("Nome: " + login);
+            System.out.println("Email: " + senha);
 
             for (int i = 0; i < usuarios.size(); i++) {
                 if (usuarios.get(i).getEmail().equals(login) && usuarios.get(i).getPassword().equals(hash)) {
@@ -63,21 +69,25 @@ public class LoginServlet extends HttpServlet {
                         RequestDispatcher rd = request.getRequestDispatcher("MenuCli.jsp");
                         rd.forward(request, response);
 
-                    } else if (u.getIdType().getUserType().equals("Emp")){
+                    } else if (u.getIdType().getUserType().equals("Emp")) {
 
+                        request.setAttribute("nome_user", u.getName());
+                        request.setAttribute("user", u);
                         RequestDispatcher rd = request.getRequestDispatcher("MenuEmp.jsp");
                         rd.forward(request, response);
                     }
-                    
+
                 } else if (i + 1 == usuarios.size()) {
                     System.out.println("não existe");
-                    
+
                 }
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
+
+    
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
