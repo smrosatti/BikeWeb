@@ -11,6 +11,7 @@ import Model.UserType;
 import Model.UserValidation;
 import Model.Userr;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.ZoneId;
@@ -25,7 +26,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author SARA
  */
-public class CadastroEmpServlet extends HttpServlet {
+public class EditarCliServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -39,7 +40,7 @@ public class CadastroEmpServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try {
+       try {
             String nome = request.getParameter("nome");
             String sobrenome = request.getParameter("sobrenome");
             String email = request.getParameter("email");
@@ -48,51 +49,45 @@ public class CadastroEmpServlet extends HttpServlet {
             String consenha = request.getParameter("consenha");
             String aniversario = request.getParameter("aniversario");
             String img = request.getParameter("pathimg");
-            String cpf = request.getParameter("cpf");
+            
+            Userr usuario = (Userr) request.getAttribute("user");
+            
+            System.out.println(aniversario);
 
-            UserValidation uv = new UserValidation();
+            if (senha.equals(consenha)) {
+                Gender genero = new Gender();
 
-            if (uv.isCPF(cpf) == false) {
-                System.out.println("cpf invalido");
-                request.setAttribute("erro_cpf", true);
-                RequestDispatcher r = request.getRequestDispatcher("CadastroEmp.jsp");
-                r.forward(request, response);
-            } else if (senha.equals(consenha)) {
+                UserValidation uv = new UserValidation();
+                senha = uv.hashpass(senha);
 
                 if (img == null || img.equals(" ")) {
                     img = "br/com/bikefood/image/user_padrao.png";
                 }
-
-                Gender genero = new Gender();
 
                 Date bt = new SimpleDateFormat("yyyy-MM-dd").parse(aniversario);
 
                 LocalDate dt = bt.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 
                 UserType ut = new UserType();
-                ut.setIdType(3L);
+                ut.setIdType(2L);
 
+                Userr u = new Userr(usuario.getId(), nome, sobrenome, senha, genero, ut, "cliente", email, dt, ("file:///"+img));
+                Dal dal = new Dal();
+                dal.edit(u);
                 if (gender.equals("male")) {
                     genero.setIdGender(1L);
                 } else {
                     genero.setIdGender(2L);
                 }
 
-                Userr u = new Userr(nome, sobrenome, senha, genero, ut, cpf, email, dt, ("file:///"+img));
-                Dal dal = new Dal();
-                dal.create(u);
-
-                RequestDispatcher rd = request.getRequestDispatcher("Login.jsp");
-                rd.forward(request, response);
-
             } else {
                 System.out.println("senha não coincide");
-                request.setAttribute("erro_senha", true);
-                RequestDispatcher r = request.getRequestDispatcher("CadastroEmp.jsp");
-                r.forward(request, response);
+                request.setAttribute("erro", true);
+                RequestDispatcher rd = request.getRequestDispatcher("EditarCli.jsp");
+                rd.forward(request, response);
             }
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (Exception ee) {
+            ee.printStackTrace();
         }
     }
 

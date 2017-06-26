@@ -5,17 +5,9 @@
  */
 package Servlets;
 
-import Dal.Dal;
-import Model.Gender;
-import Model.UserType;
-import Model.UserValidation;
+import Model.Bikefood;
 import Model.Userr;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.ZoneId;
-import java.util.Date;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -25,7 +17,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author SARA
  */
-public class CadastroCliServlet extends HttpServlet {
+public class VisualizaBikeServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -40,50 +32,15 @@ public class CadastroCliServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try {
-            String nome = request.getParameter("nome");
-            String sobrenome = request.getParameter("sobrenome");
-            String email = request.getParameter("email");
-            String gender = request.getParameter("gender");
-            String senha = request.getParameter("senha");
-            String consenha = request.getParameter("consenha");
-            String aniversario = request.getParameter("aniversario");
-            String img = request.getParameter("pathimg");
-            System.out.println(aniversario);
-
-            if (senha.equals(consenha)) {
-                Gender genero = new Gender();
-
-                UserValidation uv = new UserValidation();
-                senha = uv.hashpass(senha);
-
-                if (img == null || img.equals(" ")) {
-                    img = "br/com/bikefood/image/user_padrao.png";
-                }
-
-                Date bt = new SimpleDateFormat("yyyy-MM-dd").parse(aniversario);
-
-                LocalDate dt = bt.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-
-                UserType ut = new UserType();
-                ut.setIdType(2L);
-
-                Userr u = new Userr(nome, sobrenome, senha, genero, ut, "cliente", email, dt, ("file:///"+img));
-                Dal dal = new Dal();
-                dal.create(u);
-                if (gender.equals("male")) {
-                    genero.setIdGender(1L);
-                } else {
-                    genero.setIdGender(2L);
-                }
-
-            } else {
-                System.out.println("senha não coincide");
-                request.setAttribute("erro", true);
-                RequestDispatcher rd = request.getRequestDispatcher("Cadastrocli.jsp");
-                rd.forward(request, response);
-            }
-        } catch (Exception ee) {
-            ee.printStackTrace();
+            Bikefood bf = (Bikefood) request.getAttribute("bikefood");
+            request.setAttribute("bike_exibido", bf);
+            
+            Userr u = (Userr) request.getAttribute("usermenu");
+            request.setAttribute("user", u);
+            
+            
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 

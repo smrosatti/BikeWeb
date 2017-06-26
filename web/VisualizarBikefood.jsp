@@ -4,6 +4,11 @@
     Author     : SARA
 --%>
 
+<%@page import="Model.Userr"%>
+<%@page import="Model.Product"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="Model.Bikefood"%>
+<%@page import="Dal.Dal"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -31,6 +36,8 @@
 
     <body>
 
+        <% Bikefood bf = (Bikefood) request.getAttribute("bike_exibido"); %>
+
         <nav class="w3-sidebar w3-black w3-collapse w3-top w3-large w3-padding" style="z-index:3;width:300px;font-weight:bold;" id="mySidebar"><br>
             <a href="javascript:void(0)" onclick="w3_close()" class="w3-button w3-hide-large w3-display-topleft" style="width:100%;font-size:22px">Close Menu</a>
             <center>
@@ -39,9 +46,10 @@
                 </div>
             </center>
             <div class="w3-bar-block">
-                <a href="MenuEmp.jsp" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Menu</a>
-                <a href="meusbikes.jsp" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Meus Bikefoods</a> 
-                <a href="listabikes.jsp" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Listar Bikefoods</a> 
+                <% String volta = (String) request.getAttribute("menu");
+                    Userr user = (Userr) request.getAttribute("user");
+                %>
+                <a href= "IniciaMenuServlet" type="submit" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Menu Inicial</a>
                 <a href="index.html" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Sair</a> 
             </div>
         </nav>
@@ -74,7 +82,7 @@
                     </div>
                 </div>
             </center>
-                            
+
             <div class="w3-container" style="margin-top:15px" id="showcase">
                 <h1 class="w3-xlarge"><center><b>Localização Pelo Mapa</b></center></h1>
                 <center>
@@ -97,14 +105,37 @@
             <br><br>
 
             <div class="w3-row-padding">
-                <div class="w3-third w3-container w3-margin-bottom">
-                    <img src="./Image/bk.jpg" alt="Norway" style="width:100%" class="w3-hover-opacity">
-                    <div class="w3-container w3-white">
-                        <br>
-                        <p><b>${nome_prato} Nome</b></p>
-                        <p>${ing} Estes São os ingredientes</p>
+                <% Dal dal = new Dal();
+                    ArrayList<Product> c = new ArrayList(dal.getProducts((int) bf.getId()));
+
+                    if (c.isEmpty()) { %>
+
+                <div class="w3-container" style="margin-top:10px" >
+                    <div class="w3-display-container w3-container">
+                        <img src="./Image/fd.jpg" alt="Seu Bikefood" style="width:95%">
+                        <div class="w3-display-topleft w3-text-black" style="padding:24px 48px">
+                            <h1 class="w3-xxxlarge w3-hide-small">Este Bike Food não possui cardápio</h1>
+                            <h1 class="w3-xlarge">Obtenha o iBKF para Desktop e cadastre um Cardápio</h1>
+                            <p><a href="https://github.com/samuelleand/Bikefood" class="w3-button w3-black w3-padding-large w3-large">Obter o iBKF Desktop</a></p>
+                        </div>
                     </div>
                 </div>
+
+                <%  } else {
+                        for(int i = 0; i<c.size(); i++){%>
+
+                <div class="w3-third w3-container w3-margin-bottom">
+                    <img src="./ImageCardapio/<% c.get(i).getImg(); %>" alt="Norway" style="width:100%" class="w3-hover-opacity">
+                    <div class="w3-container w3-white">
+                        <br>
+                        <p><b>Nome: <% c.get(i).getName(); %></b></p>
+                        <p><b>Preço: <% c.get(i).getPrice(); %></b></p>
+                        <p> Ingredientes: <% c.get(i).getIngredients(); %></p>
+                    </div>
+                </div>
+
+                <% } }
+                %>
             </div>
         </div>
 

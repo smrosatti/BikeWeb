@@ -20,7 +20,7 @@
     <script src="bootstrap/js/bootstrap.min.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
     <body style="background: url('./Image/rua.jpg'); background-repeat: no-repeat; background-attachment: fixed; background-size: 100%;">
-        
+
         <!-- Menu Bar ( topo ) -->
         <div class="w3-bar w3-black">
             <a href="index.html" class="w3-bar-item w3-button">Home</a>
@@ -29,7 +29,7 @@
         </div><br>
 
         <header id="top" class="header" style="align-items: center">
-            
+
             <center>
                 <br>
                 <center><label><span class="span-input text-uppercase">Login</span></label></center>
@@ -38,6 +38,21 @@
                         <div class="col-md-offset-3 col-md-6" style="background-color: black; padding: 30px 20px; opacity: 0.9;">
                             <div class="form-login" style="margin: 20px;">
                                 <form  action="LoginServlet" method="GET" class="form-group">
+                                    <%
+                                        try {
+                                            Boolean erro = (Boolean) request.getAttribute("erro");
+                                            if (erro) {
+                                    %>
+                                    <div class="alert alert-warning alert-dismissible" role="alert">
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                        <strong>Erro!</strong><br>
+                                        <center>Email e/ou senha informados Incorretos!</center>
+                                    </div>
+                                    <% }
+                                        } catch (Exception ex) {
+                                            ex.getMessage();
+                                        }
+                                    %>
                                     <!-- Cada campo -->
                                     <div class="group">
                                         <input name="email" type="email" required="">
@@ -139,9 +154,9 @@
             }
             // Enable map zooming with mouse scroll when the user clicks the map
             $('.map').on('click', onMapClickHandler);
-            
+
             function NotExist() {
-                   alert("Email ou senha incorretos!"); 
+                alert("Email ou senha incorretos!");
             }
         </script>
     </body>

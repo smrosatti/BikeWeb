@@ -43,7 +43,6 @@ public class LoginServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try {
-            System.out.println("\n ESTOU FUNFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANDOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO \n");
 
             Dal dal = new Dal();
             ArrayList<Userr> usuarios = new ArrayList(dal.getList(u));
@@ -65,12 +64,16 @@ public class LoginServlet extends HttpServlet {
                     System.out.println("OLA: " + u.getName());
 
                     if (u.getIdType().getUserType().equals("Default")) {
-
+                        
+                        request.setAttribute("erro", false);
+                        request.setAttribute("nome_user", u.getName());
+                        request.setAttribute("user", u);
                         RequestDispatcher rd = request.getRequestDispatcher("MenuCli.jsp");
                         rd.forward(request, response);
 
                     } else if (u.getIdType().getUserType().equals("Emp")) {
-
+                        
+                        request.setAttribute("erro", false);
                         request.setAttribute("nome_user", u.getName());
                         request.setAttribute("user", u);
                         RequestDispatcher rd = request.getRequestDispatcher("MenuEmp.jsp");
@@ -79,6 +82,9 @@ public class LoginServlet extends HttpServlet {
 
                 } else if (i + 1 == usuarios.size()) {
                     System.out.println("não existe");
+                    request.setAttribute("erro", true);
+                    RequestDispatcher rd = request.getRequestDispatcher("Login.jsp");
+                    rd.forward(request, response);
 
                 }
             }
@@ -86,8 +92,6 @@ public class LoginServlet extends HttpServlet {
             e.printStackTrace();
         }
     }
-
-    
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

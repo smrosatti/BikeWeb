@@ -28,7 +28,7 @@
     </style>
     <body>
         <% Userr us = (Userr) request.getAttribute("user");%>
-        
+
         <!-- Sidebar/menu -->
         <nav class="w3-sidebar w3-black w3-collapse w3-top w3-large w3-padding" style="z-index:3;width:300px;font-weight:bold;" id="mySidebar"><br>
             <a href="javascript:void(0)" onclick="w3_close()" class="w3-button w3-hide-large w3-display-topleft" style="width:100%;font-size:22px">Close Menu</a>
@@ -38,9 +38,9 @@
                 </div>
             </center>
             <div class="w3-bar-block">
-                <a href="#" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Menu</a> 
-                <a href="meusbikes.jsp" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Meus Bikefoods</a> 
-                <a href="listabikes.jsp" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Listar Bikefoods</a> 
+                <a href="MenuEmp.jsp" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Menu</a> 
+                <a href="MeusBikes.jsp" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Meus Bikefoods</a> 
+                <a href="ListaBikes.jsp" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Listar Bikefoods</a> 
                 <a href="index.html" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Sair</a> 
             </div>
         </nav>
@@ -61,7 +61,7 @@
             <div class="w3-container" style="margin-top:40px" id="showcase">
                 <h1 class="w3-xxlarge"><b>Bem - Vindo: </b></h1>
                 <center>
-                <hr style="width:150px;border:5px solid blue" class="w3-round">
+                    <hr style="width:150px;border:5px solid blue" class="w3-round">
                 </center>
             </div>
 
@@ -78,15 +78,26 @@
 
                     <!-- Wrapper for slides -->
                     <div class="carousel-inner">
-                        <%  Dal dal = new Dal();
-                        
+                        <%
+                            Dal dal = new Dal();
                             ArrayList<Bikefood> ar = new ArrayList(dal.getBikes((int) us.getId()));
-                            for(int i = 0; i<ar.size(); i++){
-                        %>
+                            if (ar.isEmpty()) { %>
+                            
                         <div class="item active">
-                            <img src=<% ar.get(i).getImg();%> alt="Bikefood" style="width:100%;">
+                            <h1 class="w3-xlarge">Você não possui Bikes Cadastrados</h1>
+                            <h1 class="w3-xlarge">Obtenha o iBKF para cadastra-los</h1>
+                            <img src="./Image/fd.jpg" alt="Bikefood" style="width:100%;">
                         </div>
-                        <%};%>
+                        
+                        <% } else {
+                            for (int i = 0; i < ar.size(); i++) {
+                        %>
+                        
+                        <div class="item active">
+                            <img src="./ImageBikes/<% ar.get(i).getImg();%>" alt="Bikefood" style="width:100%;">
+                        </div>
+                        <%}
+                            };%>
                     </div>
 
                     <!-- Left and right controls -->
@@ -115,7 +126,7 @@
                     <img src="/w3images/livingroom2.jpg" style="width:100%" onclick="onClick(this)" alt="Scandinavian design">
                 </div>
             </div>
-             -->
+            -->
 
             <!-- Modal for full size images on click-->
             <div id="modal01" class="w3-modal w3-black" style="padding-top:0" onclick="this.style.display = 'none'">
