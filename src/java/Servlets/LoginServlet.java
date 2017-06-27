@@ -55,6 +55,9 @@ public class LoginServlet extends HttpServlet {
 
             System.out.println("Nome: " + login);
             System.out.println("Email: " + senha);
+            
+            CarregaImagem c = new CarregaImagem();
+            c.carregabf(u);
 
             for (int i = 0; i < usuarios.size(); i++) {
                 if (usuarios.get(i).getEmail().equals(login) && usuarios.get(i).getPassword().equals(hash)) {

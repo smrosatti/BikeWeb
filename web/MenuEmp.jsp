@@ -28,9 +28,9 @@
     </style>
     <body>
         <% Userr us = (Userr) request.getAttribute("user");
-        System.out.print(us.getName());
-        Dal d = new Dal();
-        ArrayList<Bikefood> bikes = new ArrayList( d.getBikes((int) us.getId()) );
+            System.out.print(us.getName());
+            Dal d = new Dal();
+            ArrayList<Bikefood> bikes = new ArrayList(d.getBikes((int) us.getId()));
         %>
 
         <!-- Sidebar/menu -->
@@ -38,12 +38,12 @@
             <a href="javascript:void(0)" onclick="w3_close()" class="w3-button w3-hide-large w3-display-topleft" style="width:100%;font-size:22px">Close Menu</a>
             <center>
                 <div class="w3-container">
-                    <h3 class="w3-padding-64"><b>Bem-Vindo<br><%=us.getName() +" "+ us.getLastName()  %></b></h3>
+                    <h3 class="w3-padding-64"><b>Bem-Vindo<br><%=us.getName() + " " + us.getLastName()%></b></h3>
                 </div>
             </center>
             <div class="w3-bar-block">
                 <a href="MenuEmp.jsp" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Menu</a> 
-                <a href="MeusBikes.jsp" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Meus Bikefoods</a> 
+                <a href="MeusBikes.jsp" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Cadastrar Bike Foods</a> 
                 <a href="ListaBikes.jsp" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Listar Bikefoods</a> 
                 <a href="index.html" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Sair</a> 
             </div>
@@ -63,7 +63,7 @@
 
             <!-- Header -->
             <div class="w3-container" style="margin-top:40px" id="showcase">
-                <h1 class="w3-xxlarge"><b>Você Possui: <%=bikes.size() %> Bike Foods Cadastrados</b></h1>
+                <h1 class="w3-xxlarge"><b>Você Possui: <%=bikes.size()%> Bike Food(s) Cadastrado(s)</b></h1>
                 <center>
                     <hr style="width:150px;border:5px solid blue" class="w3-round">
                 </center>
@@ -84,19 +84,19 @@
                     <div class="carousel-inner">
                         <%
                             if (bikes.isEmpty()) { %>
-                            
+
                         <div class="item active">
                             <h1 class="w3-xlarge">Você não possui Bikes Cadastrados</h1>
                             <h1 class="w3-xlarge">Obtenha o iBKF para cadastra-los</h1>
                             <img src="./Image/fd.jpg" alt="Bikefood" style="width:100%;">
                         </div>
-                        
+
                         <% } else {
                             for (int i = 0; i < bikes.size(); i++) {
                         %>
-                        
+
                         <div class="item active">
-                            <img src="./ImageBikes/<%=bikes.get(i).getImg() %>" alt="Bikefood" style="width:100%;">
+                            <img src="./ImageBikes/bk<%= bikes.get(i).getId()%>.jpg" alt="Bikefood" style="width:70%;">
                         </div>
                         <%}
                             };%>
@@ -130,6 +130,23 @@
             </div>
             -->
 
+            <div class="w3-container" id="services" style="margin-top:75px">
+                <h1 class="w3-xxxlarge w3-text-black"><b><center>Meus Bike Fooods</center></b></h1>
+                <center> <hr style="width:150px;border:5px solid blue" class="w3-round"></center>
+                <div class="w3-row w3-container" style="margin:50px 0">
+                    <% for (int a = 0; a < bikes.size(); a++) {%>
+                    <div class="w3-half w3-container">
+                        <div class="w3-topbar w3-border-amber">
+                            <img src="./ImageBikes/bk<%=bikes.get(a).getId()%>.jpg" style="width:100%">
+                            <h2><%= bikes.get(a).getName()%></h2>
+                            <p><a href="#jeans" class="w3-button w3-black w3-padding-large w3-large">Visualizar</a></p>
+                            <p>Tipo: <%=bikes.get(a).getType().getType()%></p>
+                        </div>
+                        <%};%>
+                    </div>
+                </div>
+            </div>
+
             <!-- Modal for full size images on click-->
             <div id="modal01" class="w3-modal w3-black" style="padding-top:0" onclick="this.style.display = 'none'">
                 <span class="w3-button w3-black w3-xxlarge w3-display-topright">×</span>
@@ -139,62 +156,7 @@
                 </div>
             </div>
 
-            <!-- Services -->
-            <div class="w3-container" id="services" style="margin-top:75px">
-                <h1 class="w3-xxxlarge w3-text-red"><b>Services.</b></h1>
-                <hr style="width:50px;border:5px solid red" class="w3-round">
-                <p>We are a interior design service that focus on what's best for your home and what's best for you!</p>
-                <p>Some text about our services - what we do and what we offer. We are lorem ipsum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-                    dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor
-                    incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                </p>
-            </div>
-
-            <!-- Designers -->
-            <div class="w3-container" id="designers" style="margin-top:75px">
-                <h1 class="w3-xxxlarge w3-text-red"><b>Designers.</b></h1>
-                <hr style="width:50px;border:5px solid red" class="w3-round">
-                <p>The best team in the world.</p>
-                <p>We are lorem ipsum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-                    dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor
-                    incididunt ut labore et quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                </p>
-                <p><b>Our designers are thoughtfully chosen</b>:</p>
-            </div>
-
-            <!-- The Team -->
-            <div class="w3-row-padding w3-grayscale">
-                <div class="w3-col m4 w3-margin-bottom">
-                    <div class="w3-light-grey">
-                        <img src="/w3images/team2.jpg" alt="John" style="width:100%">
-                        <div class="w3-container">
-                            <h3>John Doe</h3>
-                            <p class="w3-opacity">CEO & Founder</p>
-                            <p>Phasellus eget enim eu lectus faucibus vestibulum. Suspendisse sodales pellentesque elementum.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="w3-col m4 w3-margin-bottom">
-                    <div class="w3-light-grey">
-                        <img src="/w3images/team1.jpg" alt="Jane" style="width:100%">
-                        <div class="w3-container">
-                            <h3>Jane Doe</h3>
-                            <p class="w3-opacity">Designer</p>
-                            <p>Phasellus eget enim eu lectus faucibus vestibulum. Suspendisse sodales pellentesque elementum.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="w3-col m4 w3-margin-bottom">
-                    <div class="w3-light-grey">
-                        <img src="/w3images/team3.jpg" alt="Mike" style="width:100%">
-                        <div class="w3-container">
-                            <h3>Mike Ross</h3>
-                            <p class="w3-opacity">Architect</p>
-                            <p>Phasellus eget enim eu lectus faucibus vestibulum. Suspendisse sodales pellentesque elementum.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+           
 
             <!-- Packages / Pricing Tables -->
             <div class="w3-container" id="packages" style="margin-top:75px">
@@ -246,9 +208,9 @@
                 <h1 class="w3-xxxlarge w3-text-blue"><b>Obtenha o iBKF para Desktop</b></h1>
                 <hr style="width:50px;border:5px solid blue" class="w3-round">
                 <p>Você quer gerenciar seus Bike Foods com mais eficiência? Deseja ter controle completo sobre os locais em que seus Bike Foods estarão?
-                 Obetenha o iBKF para desktop, instale-o em seu computador e cadastre seus cardápios, Bikes e localizações, edite seu perfil e obtenha informações sobre a modalidade Food Bikes.
-                 iBKF - BIKEFOOD DE UM JEITO QUE VOCÊ NUNCA VIU!!!</p>
-                 <button href="https://github.com/samuelleand/Bikefood" class="w3-button w3-block w3-blue-gray w3-xxlarge" style="width:80%">Obter iBKF para Desktop</button>
+                    Obetenha o iBKF para desktop, instale-o em seu computador e cadastre seus cardápios, Bikes e localizações, edite seu perfil e obtenha informações sobre a modalidade Food Bikes.
+                    iBKF - BIKEFOOD DE UM JEITO QUE VOCÊ NUNCA VIU!!!</p>
+                <button href="https://github.com/samuelleand/Bikefood" class="w3-button w3-block w3-blue-gray w3-xxlarge" style="width:80%">Obter iBKF para Desktop</button>
             </div>
 
             <!-- End page content -->
