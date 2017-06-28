@@ -36,8 +36,8 @@
                 </div>
             </center>
             <div class="w3-bar-block">
-                <a href="MenuCli.jsp" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Menu de Favoritos</a>
-                <a href="EditarCli.jsp" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Meu Perfil</a> 
+                <a href="IniciaMenuServlet" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Menu</a>
+                <a href="IniciaEditarServlet" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Meu Perfil</a> 
                 <a href="index.html" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Sair</a> 
             </div>
         </nav>
@@ -66,12 +66,12 @@
 
                 <div class="w3-half w3-container">
                     <div class="w3-topbar w3-border-amber">
-                        <img src="./ImageBikes/bk<%=bikes.get(i).getId() %>.jpg" style="width:100%">
+                        <img src="./ImageBikes/bk<%=bikes.get(i).getId() %>.jpg" style="width:100%; height: 300px;">
                         <h2>Nome: <%=bikes.get(i).getName() %></h2>
                          <a href="VisualizaBikeServlet?id=<%= bikes.get(i).getId() %>" class="w3-button w3-black w3-padding-large w3-large">Visualizar</a>
-                        <p>Localização: <%=bikes.get(i).getLocations().get(bikes.size()-1).getStreet() %> - <%=bikes.get(i).getLocations().get(bikes.size()-1).getDistrict()  %>
+                         <p>Localização: <%=bikes.get(i).getLocations().get(bikes.get(i).getLocations().size()-1).getStreet() %> - <%=bikes.get(i).getLocations().get(bikes.get(i).getLocations().size()-1).getDistrict()  %>
                             </p>
-                        <p>Número: <%=bikes.get(i).getLocations().get(bikes.size()-1).getNumber() %></p>
+                        <p>Número: <%=bikes.get(i).getLocations().get(bikes.get(i).getLocations().size()-1).getNumber() %></p>
                     </div>
                 </div>
 

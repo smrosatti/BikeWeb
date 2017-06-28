@@ -1,16 +1,15 @@
 <%-- 
-    Document   : CadBikefood
-    Created on : 26/06/2017, 20:10:01
+    Document   : EditarEmp
+    Created on : 28/06/2017, 08:23:27
     Author     : SARA
 --%>
 
-<%@page import="Model.Userr"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Cadastro de Bike Food </title>
+        <title>Editar Cliente</title>
         <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
     <link rel="stylesheet" href="css/form.css" type="text/css">
     <script src="js/form.js"></script>
@@ -35,7 +34,7 @@
                 </div>
             </center>
             <div class="w3-bar-block">
-                <a href="IniciaMenuServlet" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Menu/Meus Bikes</a>              
+                <a href="IniciaMenuServlet" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Menu/Bikes Favoritos</a>              
                 <a href="index.html" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Sair</a> 
             </div>
         </nav>
