@@ -126,6 +126,19 @@ public class Dal implements Serializable {
             closeAll(em);
         }
     }
+    
+    public Product findProduct(int id) {
+        EntityManager em = getEntityManager();
+        try {
+            String sql = "select t from Product t where t.idProduct = " + id;
+            Query query = getEntityManager().createQuery(sql);
+            List<Product> list = query.getResultList();
+            Product bf = list.get(0);
+            return bf;
+        } finally {
+            closeAll(em);
+        }
+    }
 
     public List<Favorites> getFavorites(int id) {
         EntityManager em = getEntityManager();

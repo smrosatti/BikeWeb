@@ -17,7 +17,7 @@ import javax.persistence.Id;
  */
 @Entity
 public class UserType implements Serializable, ModelBase{
-    @Id
+       @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long idType;
     
@@ -57,6 +57,4 @@ public class UserType implements Serializable, ModelBase{
     public long getIdType() {
         return idType;
     }
-    
-    
 }

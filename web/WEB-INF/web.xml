@@ -24,6 +24,18 @@
         <servlet-name>IniciaMenuServlet</servlet-name>
         <servlet-class>Servlets.IniciaMenuServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>IniciaEditarServlet</servlet-name>
+        <servlet-class>Servlets.IniciaEditarServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>IniciaListaBikesServlet</servlet-name>
+        <servlet-class>Servlets.IniciaListaBikesServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ExcluiItemServlet</servlet-name>
+        <servlet-class>Servlets.ExcluiItemServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/LoginServlet</url-pattern>
@@ -47,6 +59,18 @@
     <servlet-mapping>
         <servlet-name>IniciaMenuServlet</servlet-name>
         <url-pattern>/IniciaMenuServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>IniciaEditarServlet</servlet-name>
+        <url-pattern>/IniciaEditarServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>IniciaListaBikesServlet</servlet-name>
+        <url-pattern>/IniciaListaBikesServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ExcluiItemServlet</servlet-name>
+        <url-pattern>/ExcluiItemServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

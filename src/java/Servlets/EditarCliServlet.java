@@ -40,7 +40,7 @@ public class EditarCliServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-       try {
+        try {
             String nome = request.getParameter("nome");
             String sobrenome = request.getParameter("sobrenome");
             String email = request.getParameter("email");
@@ -49,9 +49,9 @@ public class EditarCliServlet extends HttpServlet {
             String consenha = request.getParameter("consenha");
             String aniversario = request.getParameter("aniversario");
             String img = request.getParameter("pathimg");
-            
-            Userr usuario = (Userr) request.getAttribute("user");
-            
+
+            Userr usuario = (Userr) request.getSession().getAttribute("user");
+
             System.out.println(aniversario);
 
             if (senha.equals(consenha)) {
@@ -71,14 +71,20 @@ public class EditarCliServlet extends HttpServlet {
                 UserType ut = new UserType();
                 ut.setIdType(2L);
 
-                Userr u = new Userr(usuario.getId(), nome, sobrenome, senha, genero, ut, "cliente", email, dt, ("file:///"+img));
-                Dal dal = new Dal();
-                dal.edit(u);
                 if (gender.equals("male")) {
                     genero.setIdGender(1L);
                 } else {
                     genero.setIdGender(2L);
                 }
+
+                Userr u = new Userr(usuario.getId(), nome, sobrenome, senha, genero, ut, "cliente", email, dt, ("file:///" + img));
+                Dal dal = new Dal();
+                dal.edit(u);
+                
+                request.getSession().setAttribute("user", u);
+                
+                RequestDispatcher rd = request.getRequestDispatcher("IniciaMenuServlet");
+                rd.forward(request, response);
 
             } else {
                 System.out.println("senha não coincide");

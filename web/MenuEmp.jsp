@@ -69,12 +69,6 @@
             <div class="container">
                 <h2>Meus Bike Foods</h2>  
                 <div id="myCarousel" class="carousel slide" data-ride="carousel">
-                    <!-- Indicators -->
-                    <ol class="carousel-indicators">
-                        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-                        <li data-target="#myCarousel" data-slide-to="1"></li>
-                        <li data-target="#myCarousel" data-slide-to="2"></li>
-                    </ol>
 
                     <!-- Wrapper for slides -->
                     <div class="carousel-inner">
@@ -94,7 +88,7 @@
                         <div class="item <%if (bikes.get(0) == bikes.get(i)) {
                                 out.print("active");
                             }%>">
-                            <img src="./ImageBikes/bk<%= bikes.get(i).getId() %>.jpg" alt="Bikefood" style="width:100%; height: 700px;">
+                            <img src="./ImageBikes/bk<%= bikes.get(i).getId() %>.jpg" alt="Bikefood" style="width:100%; height: 500px;">
                         </div>
                         <%  }
                             }

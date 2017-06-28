@@ -4,6 +4,7 @@
     Author     : SARA
 --%>
 
+<%@page import="Model.Userr"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
 <%@page import="Dal.Dal"%>
@@ -24,6 +25,8 @@
 
     </head>
     <body>
+        
+        <% Userr u = (Userr) request.getSession().getAttribute("user"); %>
 
         <nav class="w3-sidebar w3-black w3-collapse w3-top w3-large w3-padding" style="z-index:3;width:300px;font-weight:bold;" id="mySidebar"><br>
             <a href="javascript:void(0)" onclick="w3_close()" class="w3-button w3-hide-large w3-display-topleft" style="width:100%;font-size:22px">Close Menu</a>
@@ -58,21 +61,23 @@
             <div class="w3-row w3-container" style="margin:50px 0">
                 <%  Bikefood bf = new Bikefood();
                     Dal dal = new Dal();
-                    List<Bikefood> bikes = new ArrayList(dal.getList(bf));
+                    ArrayList<Bikefood> bikes = new ArrayList(dal.getList(bf));
                     for (int i = 0; i < bikes.size(); i++) {    %>
 
                 <div class="w3-half w3-container">
                     <div class="w3-topbar w3-border-amber">
-                        <img src=<% bikes.get(i).getImg(); %> style="width:100%">
-                        <h2>Nome: <% bikes.get(i).getName(); %></h2>
-                        <p>Localização: <% bikes.get(i).getType().getType();
-                            int size = bikes.get(i).getLocations().size()-1; %></p>
-                        <p>Localização: <% bikes.get(i).getLocations().get(size).getStreet(); %></p>
+                        <img src="./ImageBikes/bk<%=bikes.get(i).getId() %>.jpg" style="width:100%">
+                        <h2>Nome: <%=bikes.get(i).getName() %></h2>
+                         <a href="VisualizaBikeServlet?id=<%= bikes.get(i).getId() %>" class="w3-button w3-black w3-padding-large w3-large">Visualizar</a>
+                        <p>Localização: <%=bikes.get(i).getLocations().get(bikes.size()-1).getStreet() %> - <%=bikes.get(i).getLocations().get(bikes.size()-1).getDistrict()  %>
+                            </p>
+                        <p>Número: <%=bikes.get(i).getLocations().get(bikes.size()-1).getNumber() %></p>
                     </div>
                 </div>
 
                 <% }%>
             </div>
+        </div>
 
     </body>
 </html>

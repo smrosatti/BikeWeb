@@ -135,6 +135,7 @@
                         <p><b>Nome: <%=c.get(i).getName() %></b></p>
                         <p><b>Preço: <%= c.get(i).getPrice() %></b></p>
                         <p> Ingredientes: <%=c.get(i).getIngredients() %></p>
+                        <p><a href="ExcluiItemServlet?id=<%=c.get(i).getId()  %>" class="w3-button w3-black w3-padding-large w3-large">Excluir Item do Cardápio</a></p>
                     </div>
                 </div>
 

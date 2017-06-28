@@ -34,13 +34,17 @@ public class IniciaMenuServlet extends HttpServlet {
         try {
             
             Userr u = (Userr) request.getSession().getAttribute("user");
+            System.out.println("UUUUUUUUUUUUUUUU:"+u.getIdType().getId());
             
-            if(u.getIdType().getUserType().equals("Default")){
-                request.setAttribute("user", u);
+            if(u.getIdType().getId() == 2){
+                
+                request.getSession().setAttribute("user", u);
                 RequestDispatcher rd = request.getRequestDispatcher("MenuCli.jsp");
                 rd.forward(request, response);
-            }else{
-                request.setAttribute("user", u);
+                
+            }else if (u.getIdType().getId() == 3){
+                
+                request.getSession().setAttribute("user", u);
                 RequestDispatcher rd = request.getRequestDispatcher("MenuEmp.jsp");
                 rd.forward(request, response);
             }           
