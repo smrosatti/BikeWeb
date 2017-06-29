@@ -48,6 +48,10 @@
         <servlet-name>SairServlet</servlet-name>
         <servlet-class>Servlets.SairServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>RemoverFavServlet</servlet-name>
+        <servlet-class>Servlets.RemoverFavServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/LoginServlet</url-pattern>
@@ -95,6 +99,10 @@
     <servlet-mapping>
         <servlet-name>SairServlet</servlet-name>
         <url-pattern>/SairServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RemoverFavServlet</servlet-name>
+        <url-pattern>/RemoverFavServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

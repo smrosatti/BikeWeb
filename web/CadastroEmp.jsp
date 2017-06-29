@@ -44,6 +44,21 @@
                                 }
                             %>
                             
+                             <%    try {
+                                Boolean erroc = (Boolean) request.getAttribute("erro_cad");
+                                if (erroc) {
+                                    
+                            %>
+                            <div class="alert alert-warning alert-dismissible" role="alert">
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <strong>Erro!</strong> Endereço de email formado já existe
+                            </div>
+                            <% }
+                                } catch (Exception ex) {
+                                    ex.getMessage();
+                                }
+                            %>
+                            
                               <%
                                 try {
                                 Boolean erro_cpf = (Boolean) request.getAttribute("erro_cpf");

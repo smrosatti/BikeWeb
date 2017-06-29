@@ -72,13 +72,23 @@ public class CadastroCliServlet extends HttpServlet {
                 } else {
                     genero.setIdGender(2L);
                 }
+                
+                CarregaImagem c = new CarregaImagem();
+                
 
-                Userr u = new Userr(nome, sobrenome, senha, genero, ut, "cliente", email, dt, ("file:///" + img));
+                Userr u = new Userr(nome, sobrenome, senha, genero, ut, "cliente", email, dt, c.upload(request, response, 1));
                 Dal dal = new Dal();
-                dal.create(u);
+                
+                if(dal.create(u)==true){
                 
                 RequestDispatcher rd = request.getRequestDispatcher("Login.jsp");
                 rd.forward(request, response);
+                }else{
+                    System.out.println("usuario já cadastrado");
+                    request.setAttribute("erro_cad", true);
+                RequestDispatcher rd = request.getRequestDispatcher("Cadastrocli.jsp");
+                rd.forward(request, response);
+                }
 
             } else {
                 System.out.println("senha não coincide");

@@ -148,7 +148,7 @@
                                 <h2><%= bikes.get(a).getIdBikefood().getName()%></h2>
 
                                 <a href="VisualizaBikeServlet?id=<%= bikes.get(a).getId()%>" class="w3-button w3-black w3-padding-large w3-large">Visualizar</a>
-                                <a href="RemoverFavServlet?id=<%= bikes.get(a).getId()%>" class="w3-button w3-black w3-padding-large w3-large">Remover dos Favoritos</a>
+                                <a href="RemoverFavServlet?id=<%= bikes.get(a).getIdFavorites() %>" class="w3-button w3-black w3-padding-large w3-large">Remover dos Favoritos</a>
                                 <p>Tipo: <%=bikes.get(a).getIdBikefood().getType().getType()%></p>
                             </div>
 

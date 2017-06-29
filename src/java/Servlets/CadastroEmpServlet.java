@@ -83,10 +83,16 @@ public class CadastroEmpServlet extends HttpServlet {
 
                 Userr u = new Userr(nome, sobrenome, hash, genero, ut, cpf, email, dt, ("file:///"+img));
                 Dal dal = new Dal();
-                dal.create(u);
-
+                if(dal.create(u)==true){
+                
                 RequestDispatcher rd = request.getRequestDispatcher("Login.jsp");
                 rd.forward(request, response);
+                }else{
+                    System.out.println("usuario já cadastrado");
+                    request.setAttribute("erro_cad", true);
+                RequestDispatcher rd = request.getRequestDispatcher("CadastroEmp.jsp");
+                rd.forward(request, response);
+                }
 
             } else {
                 System.out.println("senha não coincide");

@@ -51,6 +51,22 @@
                                     ex.getMessage();
                                 }
                             %>
+                            
+                             <%
+                                try {
+                                Boolean erroc = (Boolean) request.getAttribute("erro_cad");
+                                if (erroc) {
+                            %>
+                            <div class="alert alert-warning alert-dismissible" role="alert">
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <strong>Erro!</strong> Email informado já existe
+                            </div>
+                                <% }
+                                } catch (Exception ex) {
+                                    ex.getMessage();
+                                }
+                            %>
+                            
                             <div class="form-login" style="margin: 20px;">
                                 <div class="col-md-6">
                                     <!-- Cada campo -->
