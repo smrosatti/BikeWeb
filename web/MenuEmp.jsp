@@ -10,9 +10,11 @@
     <title>Menu Empreendedor</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="css/w3.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
     <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <style>
         body,h1,h2,h3,h4,h5 {font-family: "Poppins", sans-serif}
         body {font-size:16px;}
@@ -24,9 +26,11 @@
         <!-- Sidebar/menu -->
         <nav class="w3-sidebar w3-black w3-collapse w3-top w3-large w3-padding" style="z-index:3;width:300px;font-weight:bold;" id="mySidebar"><br>
             <a href="javascript:void(0)" onclick="w3_close()" class="w3-button w3-hide-large w3-display-topleft" style="width:100%;font-size:22px">Close Menu</a>
-            <div class="w3-container">
-                <h3 class="w3-padding-64"><b>Company<br>Name</b></h3>
-            </div>
+            <center>
+                <div class="w3-container">
+                    <h3 class="w3-padding-64"><b>Bem-Vindo<br>Usuário</b></h3>
+                </div>
+            </center>
             <div class="w3-bar-block">
                 <a href="#" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Menu</a> 
                 <a href="meusbikes.jsp" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Meus Bikefoods</a> 
@@ -36,9 +40,9 @@
         </nav>
 
         <!-- Top menu on small screens -->
-        <header class="w3-container w3-top w3-hide-large w3-red w3-xlarge w3-padding">
+        <header class="w3-container w3-top w3-hide-large w3-black w3-xlarge w3-padding">
             <a href="javascript:void(0)" class="w3-button w3-black w3-margin-right" onclick="w3_open()">☰</a>
-            <span>Bem - Vindo : Nome Usuario</span>
+            <span>iBKF</span>
         </header>
 
         <!-- Overlay effect when opening sidebar on small screens -->
@@ -49,8 +53,10 @@
 
             <!-- Header -->
             <div class="w3-container" style="margin-top:80px" id="showcase">
-                <h1 class="w3-jumbo"><b>Meus Bikefoods</b></h1>
-                <hr style="width:50px;border:5px solid green" class="w3-round">
+                <h1 class="w3-xxlarge"><b>Bem - Vindo: </b></h1>
+                <center>
+                <hr style="width:150px;border:5px solid blue" class="w3-round">
+                </center>
             </div>
 
             <!-- caroussel-->
@@ -67,15 +73,15 @@
                     <!-- Wrapper for slides -->
                     <div class="carousel-inner">
                         <div class="item active">
-                            <img src="la.jpg" alt="Los Angeles" style="width:100%;">
+                            <img src="./Image/bk.jpg" alt="Bikefood" style="width:100%;">
+                        </div>
+
+                        <div class="item ">
+                            <img src="./Image/rua.jpg" alt="Bikefood" style="width:100%;">
                         </div>
 
                         <div class="item">
-                            <img src="chicago.jpg" alt="Chicago" style="width:100%;">
-                        </div>
-
-                        <div class="item">
-                            <img src="ny.jpg" alt="New york" style="width:100%;">
+                            <img src="./Image/fd.jpg" alt="New york" style="width:100%;">
                         </div>
                     </div>
 

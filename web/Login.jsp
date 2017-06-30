@@ -17,7 +17,7 @@
         <a href="index.html" class="w3-bar-item w3-button">Home</a>
 
         <a href="CadastroEmp.jsp" class="w3-bar-item w3-button">Cadastro Empreendedor</a>
-        <a href="CadastroCli.jsp" class="w3-bar-item w3-button">Cadastro Cliente</a>            
+        <a href="Cadastrocli.jsp" class="w3-bar-item w3-button">Cadastro Cliente</a>            
     </div><br>
 
     <br>
