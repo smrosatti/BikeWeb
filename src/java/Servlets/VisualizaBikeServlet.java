@@ -44,6 +44,7 @@ public class VisualizaBikeServlet extends HttpServlet {
             
             CarregaImagem prod = new CarregaImagem();
             prod.carregaCard(bf);
+            
             Thread.sleep(2000);
             
              RequestDispatcher rd = request.getRequestDispatcher("VisualizarBikefood.jsp");

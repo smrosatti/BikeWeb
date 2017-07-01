@@ -36,25 +36,19 @@ public class IniciaMenuServlet extends HttpServlet {
             Userr u = (Userr) request.getSession().getAttribute("user");
             System.out.println("UUUUUUUUUUUUUUUU:" + u.getIdType().getId());
             
-            
-
-            if (u.getIdType().getId() == 2) {
-                
+                            
                 CarregaImagem c = new CarregaImagem();
-                c.carregaFav(u);
+                c.carregabftodos();
 
                 Thread.sleep(2000);
 
+            if (u.getIdType().getId() == 2) {
+                
                 request.getSession().setAttribute("user", u);
                 RequestDispatcher rd = request.getRequestDispatcher("MenuCli.jsp");
                 rd.forward(request, response);
 
             } else if (u.getIdType().getId() == 3) {
-                
-                CarregaImagem c = new CarregaImagem();
-                c.carregabf(u);
-
-                Thread.sleep(2000);
 
                 request.getSession().setAttribute("user", u);
                 RequestDispatcher rd = request.getRequestDispatcher("MenuEmp.jsp");

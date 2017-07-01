@@ -21,18 +21,19 @@ import javax.persistence.NamedQuery;
  * @author Samuel Leandro
  */
 @NamedQueries({
- @NamedQuery(name = "Favorites.findByUser", query = "select i from Favorites i where i.idUser = :idUser")
+    @NamedQuery(name = "Favorites.findByUser", query = "select i from Favorites i where i.idUser = :idUser")
 })
 @Entity
 public class Favorites implements Serializable, ModelBase {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long idFavorites;
     @ManyToOne
-    @JoinColumn (name = "idbikefood", nullable = false)
+    @JoinColumn(name = "idbikefood", nullable = false)
     private Bikefood idBikefood;
     @ManyToOne
-    @JoinColumn (name = "iduser", nullable = false)
+    @JoinColumn(name = "iduser", nullable = false)
     private Userr idUser;
 
     public Favorites(Bikefood idBikefood, Userr idUser) {
@@ -42,7 +43,7 @@ public class Favorites implements Serializable, ModelBase {
 
     public Favorites() {
     }
-    
+
     public Bikefood getIdBikefood() {
         return idBikefood;
     }
@@ -56,8 +57,6 @@ public class Favorites implements Serializable, ModelBase {
         return getIdFavorites();
     }
 
-    
-    
     public Userr getIdUser() {
         return idUser;
     }
@@ -77,9 +76,7 @@ public class Favorites implements Serializable, ModelBase {
     @Override
     public String toString() {
         int i = idBikefood.getLocations().size();
-        return "Nome : "+idBikefood.getName()+"         Localização Atual:  "+idBikefood.getLocations().get( i - 1).getStreet();
+        return "Nome : " + idBikefood.getName() + "         Localização Atual:  " + idBikefood.getLocations().get(i - 1).getStreet();
     }
-    
-    
-}
 
+}

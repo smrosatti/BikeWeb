@@ -36,9 +36,9 @@ public class SairServlet extends HttpServlet {
             response.sendRedirect("index.html");
             
             CarregaImagem ci = new CarregaImagem();
-            ci.DeletaArquivos("//BikeWeb//web//ImageBikes");
+           // ci.DeletaArquivos("//BikeWeb//web//ImageBikes");
             
-            ci = new CarregaImagem();
+            //ci = new CarregaImagem();
             ci.DeletaArquivos("//BikeWeb//web//ImageCardapios");
             
             

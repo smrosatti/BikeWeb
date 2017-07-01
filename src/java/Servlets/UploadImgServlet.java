@@ -49,7 +49,7 @@ public class UploadImgServlet extends HttpServlet {
             if (ServletFileUpload.isMultipartContent(request)) {
                 List<FileItem> multiparts = new ServletFileUpload(new DiskFileItemFactory()).parseRequest(request);
 
-                String img = CarregaImagem.caminho + "\\BikeWeb\\web\\UploadImagem\\bf" + bf.getId() + ".jpg";
+                String img = CarregaImagem.caminho + "\\BikeWeb\\web\\ImageBikes\\bk" + bf.getId() + ".jpg";
 
                 for (FileItem item : multiparts) {
                     if (!item.isFormField()) {
@@ -65,6 +65,7 @@ public class UploadImgServlet extends HttpServlet {
 
                 RequestDispatcher rd = request.getRequestDispatcher("IniciaMenuServlet");
                 rd.forward(request, response);
+                
             } else {
                 RequestDispatcher rd = request.getRequestDispatcher("IniciaMenuServlet");
                 rd.forward(request, response);

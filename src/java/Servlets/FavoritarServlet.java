@@ -5,6 +5,10 @@
  */
 package Servlets;
 
+import Dal.Dal;
+import Model.Bikefood;
+import Model.Favorites;
+import Model.Userr;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -30,17 +34,30 @@ public class FavoritarServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet FavoritarServlet</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet FavoritarServlet at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+        try {
+            
+            int id = Integer.valueOf(request.getParameter("id"));
+            Userr u = (Userr) request.getSession().getAttribute("user");
+            
+            Dal dal = new Dal();
+            
+            Bikefood bike = dal.findBike(id);
+            
+            dal = new Dal();
+            
+            Favorites fav = new Favorites(bike, u);
+            
+            if (dal.create(fav)) {
+                
+                response.sendRedirect("IniciaListaBikesServlet");
+                
+            } else {
+                System.out.println("ALGO DEU MUITO ERRADO");
+                
+            }   
+            
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 

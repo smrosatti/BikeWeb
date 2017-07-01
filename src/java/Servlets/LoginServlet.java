@@ -61,19 +61,12 @@ public class LoginServlet extends HttpServlet {
                      session.setAttribute("user", u);
                      
                       CarregaImagem all = new CarregaImagem();
-                        all.carregabftodos();
+                      all.carregabftodos();
+                      Thread.sleep(2000);
 
                     System.out.println("OLA: " + u.getName());
 
                     if (u.getIdType().getUserType().equals("Default")) {
-                        
-                                            
-                            
-                        CarregaImagem c = new CarregaImagem();
-                        c.carregaFav(u);
-                        
-                        Thread.sleep(2000);
-                        
 
                         request.setAttribute("erro", false);
 
@@ -82,14 +75,6 @@ public class LoginServlet extends HttpServlet {
                         rd.forward(request, response);
 
                     } else if (u.getIdType().getUserType().equals("Emp")) {
-                        
-                                            
-                            
-                        CarregaImagem c = new CarregaImagem();
-                        c.carregabf(u);
-                        
-                        Thread.sleep(2000);
-                        
 
                         request.setAttribute("erro", false);
                         

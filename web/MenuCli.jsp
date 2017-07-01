@@ -8,7 +8,6 @@
 <%@page import="Model.Userr"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="Model.Bikefood"%>
-<%@page import="Model.Bikefood"%>
 <%@page import="Dal.Dal"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -35,7 +34,7 @@
 
         <% Userr us = (Userr) request.getSession().getAttribute("user");
             Dal dal = new Dal();
-            ArrayList<Favorites> bikes = new ArrayList(dal.getFavorites((int)us.getId()));
+            ArrayList<Favorites> bikes = new ArrayList(dal.getFavorites((int) us.getId()));
         %>
 
         <!-- Sidebar/menu -->
@@ -78,12 +77,7 @@
             <div class="container">
                 <h2>Meus Bike Foods</h2>
                 <div id="myCarousel" class="carousel slide" data-ride="carousel">
-                    <!-- Indicators -->
-                    <ol class="carousel-indicators">
-                        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-                        <li data-target="#myCarousel" data-slide-to="1"></li>
-                        <li data-target="#myCarousel" data-slide-to="2"></li>
-                    </ol>
+
 
                     <!-- Wrapper for slides -->
                     <div class="carousel-inner">
@@ -92,7 +86,7 @@
 
                         <div class="item active">
                             <h1 class="w3-xlarge">Você não possui Bikes Favoritados</h1>
-                            <h1 class="w3-xlarge">Obtenha o iBKF ou vá até a lista de bikefoods para favoritá-los</h1>
+                            <h1 class="w3-xlarge">Obtenha o iBKF Desktop ou vá até a lista de Bike Foods para favoritá-los</h1>
                             <img src="./Image/fd.jpg" alt="Bikefood" style="width:100%;">
                         </div>
 
@@ -103,7 +97,7 @@
                         <div class="item <%if (bikes.get(0) == bikes.get(i)) {
                                 out.print("active");
                             }%>">
-                            <img src="./ImageBikes/bikef<%= bikes.get(i).getIdFavorites()%>.jpg" alt="Bikefood" style="width:100%; height: 700px;">
+                            <img src="./ImageBikes/bk<%= bikes.get(i).getIdBikefood().getId()%>.jpg" alt="Bikefood" style="width:100%; height: 700px;">
                         </div>
                         <%  }
                             }
@@ -144,11 +138,11 @@
 
                         <div class="w3-half w3-container">
                             <div class="w3-topbar w3-border-amber">
-                                <img src="./ImageBikes/bikef<%=bikes.get(a).getId()%>.jpg" style="width:100%; height: 300px;">
+                                <img src="./ImageBikes/bk<%=bikes.get(a).getIdBikefood().getId()%>.jpg" style="width:100%; height: 300px;">
                                 <h2><%= bikes.get(a).getIdBikefood().getName()%></h2>
 
                                 <a href="VisualizaBikeServlet?id=<%= bikes.get(a).getId()%>" class="w3-button w3-black w3-padding-large w3-large">Visualizar</a>
-                                <a href="RemoverFavServlet?id=<%= bikes.get(a).getIdFavorites() %>" class="w3-button w3-black w3-padding-large w3-large">Remover dos Favoritos</a>
+                                <a href="RemoverFavServlet?id=<%= bikes.get(a).getIdFavorites()%>" class="w3-button w3-black w3-padding-large w3-large">Remover dos Favoritos</a>
                                 <p>Tipo: <%=bikes.get(a).getIdBikefood().getType().getType()%></p>
                             </div>
 
@@ -175,7 +169,7 @@
                             <li class="w3-padding-16">Nome: <%=us.getName()%></li>
                             <li class="w3-padding-16">Sobrenome: <%=us.getLastName()%></li>
                             <li class="w3-padding-16">Email: <%=us.getEmail()%></li>
-                            
+
                             <li class="w3-padding-16">Data de Nascimento: <%=us.getBirthday()%></li>
                             <li class="w3-padding-16">Tipo de Usuário: <%=us.getIdType().getUserType()%></li>
 
@@ -190,25 +184,45 @@
 
             </div>
         </div>
-   
 
-    <div class="w3-container" id="contact" style="margin-top:75px">
-        <h1 class="w3-xxxlarge w3-text-blue"><b>Obtenha o iBKF para Desktop</b></h1>
-        <hr style="width:50px;border:5px solid blue" class="w3-round">
-        <p>Gostaria de gerenciar seus Bike Foods favoritos de uma maneira mais eficiente? Gostaria de ter acesso as localizações e demais dados de todos os bike foods 
-            para encontrar o mais perto de você? Faça download do iBKF versão Desktop e filtre, favorite e exclua da sua lista Bike Foods. 
-            iBKF - BIKEFOOD DE UM JEITO QUE VOCÊ NUNCA VIU!!!</p>
-        <button class="w3-button w3-block w3-blue-gray w3-xxlarge" type="submit" value ="GitHub" 
-                onclick="window.open('https://github.com/samuelleand/Bikefood', '_blank');" style="width:80%">Obter o iBKF para Desktop
-        </button>
+
+        <div class="w3-container" id="contact" style="margin-top:75px">
+            <h1 class="w3-xxxlarge w3-text-blue"><b>Obtenha o iBKF para Desktop</b></h1>
+            <hr style="width:50px;border:5px solid blue" class="w3-round">
+            <p>Gostaria de gerenciar seus Bike Foods favoritos de uma maneira mais eficiente? Gostaria de ter acesso as localizações e demais dados de todos os bike foods 
+                para encontrar o mais perto de você? Faça download do iBKF versão Desktop e filtre, favorite e exclua da sua lista Bike Foods. 
+                iBKF - BIKEFOOD DE UM JEITO QUE VOCÊ NUNCA VIU!!!</p>
+            <button class="w3-button w3-block w3-blue-gray w3-xxlarge" type="submit" value ="GitHub" 
+                    onclick="window.open('https://github.com/samuelleand/Bikefood', '_blank');" style="width:80%">Obter o iBKF para Desktop
+            </button>
+        </div>
+
+        <!-- End page content -->
     </div>
+    <script>
+// Script to open and close sidebar
+        function w3_open() {
+            document.getElementById("mySidebar").style.display = "block";
+            document.getElementById("myOverlay").style.display = "block";
+        }
 
-    <!-- End page content -->
-</div>
-                             
+        function w3_close() {
+            document.getElementById("mySidebar").style.display = "none";
+            document.getElementById("myOverlay").style.display = "none";
+        }
 
-<!-- W3.CSS Container -->
-<div class="w3-light-grey w3-container w3-padding-32" style="margin-top:75px;padding-right:58px"><p class="w3-right">Bike Foods <a href="http://bikefood.net/" title="W3.CSS" target="_blank" class="w3-hover-opacity">Empreendedorismo sobre rodas</a></p></div>
+// Modal Image Gallery
+        function onClick(element) {
+            document.getElementById("img01").src = element.src;
+            document.getElementById("modal01").style.display = "block";
+            var captionText = document.getElementById("caption");
+            captionText.innerHTML = element.alt;
+        }
+    </script>
+
+
+    <!-- W3.CSS Container -->
+    <div class="w3-light-grey w3-container w3-padding-32" style="margin-top:75px;padding-right:58px"><p class="w3-right">Bike Foods <a href="http://bikefood.net/" title="W3.CSS" target="_blank" class="w3-hover-opacity">Empreendedorismo sobre rodas</a></p></div>
 
 
 </body>

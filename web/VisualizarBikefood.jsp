@@ -43,7 +43,7 @@
             ArrayList<Product> c = new ArrayList(dal.getProducts((int) bf.getId()));
 
             Userr u = (Userr) request.getSession().getAttribute("user");
-            
+
             Location loc = new Location();
 
         %>
@@ -82,13 +82,13 @@
             <center>
                 <div class="w3-container" style="margin-top:10px" >
                     <div class="w3-display-container w3-container">
-                        <img src="./ImageBikes/bk<%=bf.getId()%>.jpg" alt="Seu Bikefood" style="width:70%; height: 70%;">
+                        <img src="./ImageBikes/bk<%=bf.getId()%>.jpg" alt="Bikefood" style="width:70%; height: 70%;">
                         <div class="w3-left-align w3-text-black" style="padding:24px 48px">
                             <h1 class="w3-xxxlarge w3-hide-small"><%=bf.getName()%></h1>
                             <h1 class="w3-xlarge">Telefone: <%=bf.getTel()%></h1>
                             <h1 class="w3-xlarge">Localização: <%=bf.getLocations().get(bf.getLocations().size() - 1).getStreet()%> - <%=bf.getLocations().get(bf.getLocations().size() - 1).getDistrict()%></h1>
-                            <h1 class="w3-xlarge">Número: <%=bf.getLocations().get(bf.getLocations().size() - 1).getNumber() %></h1>
-                            <% loc = bf.getLocations().get(bf.getLocations().size()-1);  %>
+                            <h1 class="w3-xlarge">Número: <%=bf.getLocations().get(bf.getLocations().size() - 1).getNumber()%></h1>
+                            <% loc = bf.getLocations().get(bf.getLocations().size() - 1);%>
                             <!-- <p><a href="" class="w3-button w3-black w3-padding-large w3-large">Novo Bike Food</a></p>-->
                         </div>
                     </div>
@@ -98,47 +98,19 @@
             <div class="w3-container" style="margin-top:15px" id="showcase">
                 <h1 class="w3-xxlarge"><center><b>Localização Pelo Mapa</b></center></h1>
                 <center>
-                    <hr style="width:150px;border:5px solid blue" class="w3-round">
+                    <hr style="width:150px;border:5px solid blue;" class="w3-round">
                 </center>
             </div>
 
 
-                            <center>  <iframe
-                width="800"
-                height="500"
-                frameborder="1" style="border:5px;"
-                src="https://www.google.com/maps/embed/v1/place?key=AIzaSyAVUnTSrgqs8L3J72gPitYIbclHicAJLkg
-                &q=<%=loc.getNumber() %>-<%=loc.getStreet().replace(" ", "+") %>,<%=loc.getIdCity().getCityName().replace(" ", "+") %>-<%=loc.getIdCountry().getCountryName().replace(" ", "+") %>" allowfullscreen>
-            </iframe>
-                            </center>
-
-            <!-- GOOGLE MAPS API CAGADA-->
-            <!-- <script src='https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyBhKy4iSWcZp6EX9RY_pRJ1ZKlKl9htZ4U&q=Space+Needle,Seattle+WA" allowfullscreen'></script>
-             <div style='overflow:hidden;height:600px;width:620px;'>
-                 <div id='gmap_canvas' style='height:600px;width:620px;'></div>
-                 <style>#gmap_canvas img{max-width:none!important;background:none!important}</style>
-             </div> 
-             <a href='http://maps-generator.com/pt'>www.maps-generator.com</a> 
-             <script type='text/javascript' src='https://embedmaps.com/google-maps-authorization/script.js?id=430973df6ff1f8f8d8fe62675df12476dc3aa95b'></script>
-            <!--<script type='text/javascript'>
-                function init_map() {
-                    var myOptions = {zoom: 15, center: new google.maps.LatLng(-25.3704069, -49.07567130000001), mapTypeId: google.maps.MapTypeId.ROADMAP};
-                    map = new google.maps.Map(document.getElementById('gmap_canvas'), myOptions);
-                    marker = new google.maps.Marker({map: map, position: new google.maps.LatLng(-25.3704069, -49.07567130000001)});
-                    infowindow = new google.maps.InfoWindow({content: '<strong>mapa</strong><br> Avenida de Acesso<br> Quatro Barras<br>'});
-                    google.maps.event.addListener(marker, 'click', function () {
-                        infowindow.open(map, marker);
-                    });
-                    infowindow.open(map, marker);
-                }
-                google.maps.event.addDomListener(window, 'load', init_map);</script>-->
-
-
-            <!-- GOOGLE MAPS -->
-            <!--<div id="map"  style="height: 100%; margin: 50px;
-                 padding: 300px;" >
-
-            </div>-->
+            <center>  <iframe
+                    width="800"
+                    height="500"
+                    frameborder="1" style="border:5px;"
+                    src="https://www.google.com/maps/embed/v1/place?key=AIzaSyAVUnTSrgqs8L3J72gPitYIbclHicAJLkg
+                    &q=<%=loc.getNumber()%>-<%=loc.getStreet().replace(" ", "+")%>,<%=loc.getIdCity().getCityName().replace(" ", "+")%>-<%=loc.getIdCountry().getCountryName().replace(" ", "+")%>" allowfullscreen>
+                </iframe>
+            </center>
 
 
             <!-- iNICIA CARDAPIO-->
@@ -199,24 +171,7 @@
                 document.getElementById("mySidebar").style.display = "none";
                 document.getElementById("myOverlay").style.display = "none";
             }
-
-            //mapa
-            //var map;
-            // function initMap() {
-            // map = new google.maps.Map(document.getElementById('map'), {
-
-            // center: {lat: -34.397, lng: 150.644},
-            //zoom: 8
-            // });
-            // }
         </script>
-
-
-
-        <!--<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDYhQxVgG8sVDp6C9UroEtcYfGLtUlEP3U&callback=initMap"
-                
-                async defer>
-        </script>-->
 
     </body>
 </html>

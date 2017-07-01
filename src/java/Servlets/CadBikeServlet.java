@@ -76,7 +76,7 @@ public class CadBikeServlet extends HttpServlet {
 
                 telefone = telefone.replaceFirst("(\\d{2})(\\d{5})(\\d+)", "($1) $2-$3");
 
-                String img = "C:\\Users\\Aluno\\Documents\\NetBeansProjects\\BikeWeb\\web\\Image\\bfpadrao.jpg";
+                String img = CarregaImagem.caminho+"\\BikeWeb\\web\\Image\\bfpadrao.jpg";
 
                 Date dti = new SimpleDateFormat("yyyy-MM-dd").parse(dtinicio);
                 Date dtf = new SimpleDateFormat("yyyy-MM-dd").parse(dtfinal);

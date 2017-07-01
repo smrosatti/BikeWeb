@@ -78,7 +78,7 @@
 
                         <div class="item active">
                             <h1 class="w3-xlarge">Você não possui Bikes Cadastrados</h1>
-                            <h1 class="w3-xlarge">Obtenha o iBKF para cadastra-los</h1>
+                            <h1 class="w3-xlarge">Obtenha o iBKF Desktop ou vá para a aba Cadastrar Bike Food</h1>
                             <img src="./Image/fd.jpg" alt="Bikefood" style="width:100%;">
                         </div>
 
@@ -89,7 +89,7 @@
                         <div class="item <%if (bikes.get(0) == bikes.get(i)) {
                                 out.print("active");
                             }%>">
-                            <img src="./ImageBikes/bk<%= bikes.get(i).getId() %>.jpg" alt="Bikefood" style="width:100%; height: 500px;">
+                            <img src="./ImageBikes/bk<%= bikes.get(i).getId()%>.jpg" alt="Bikefood" style="width:100%; height: 500px;">
                         </div>
                         <%  }
                             }
@@ -117,23 +117,30 @@
 
                 <form action="VisualizaBikeServlet" method="POST" class="form-group">
                     <div class="w3-row w3-container" style="margin:50px 0">
+                        <% if (bikes.isEmpty()) { %>
 
-                        <% for (int a = 0; a < bikes.size(); a++) {
+                        <h1 class="w3-large w3-text-black"><center><b>Você não possui nenhum Bike Food cadastrado</b></center></h1>
+
+                        <% } else {
+
+                            for (int a = 0; a < bikes.size(); a++) {
 
                         %>
 
                         <div class="w3-half w3-container">
                             <div class="w3-topbar w3-border-amber">
-                                <img src="./ImageBikes/bk<%=bikes.get(a).getId() %>.jpg" style="width:100%; height: 300px;">
+                                <img src="./ImageBikes/bk<%=bikes.get(a).getId()%>.jpg" style="width:100%; height: 300px;">
                                 <h2><%= bikes.get(a).getName()%></h2>
 
-                                <a href="VisualizaBikeServlet?id=<%= bikes.get(a).getId() %>" class="w3-button w3-black w3-padding-large w3-large">Visualizar</a>
+                                <a href="VisualizaBikeServlet?id=<%= bikes.get(a).getId()%>" class="w3-button w3-black w3-padding-large w3-large">Visualizar</a>
                                 <p>Tipo: <%=bikes.get(a).getType().getType()%></p>
                             </div>
 
                         </div>
 
-                        <%}%>
+                        <%}
+                            }
+                        %>
 
                     </div>
                 </form>
@@ -172,7 +179,7 @@
                         <li class="w3-padding-16">Tipo de Usuário: <%=us.getIdType().getUserType()%></li>
 
                         <li class="w3-light-grey w3-padding-24">
-                            <button href="IniciaEditarServlet" class="w3-button w3-blue w3-padding-large w3-hover-black">Editar Perfil</button>
+                            <button formaction="IniciaEditarServlet" class="w3-button w3-blue w3-padding-large w3-hover-black">Editar Perfil</button>
                         </li>
                     </ul>
                 </div>

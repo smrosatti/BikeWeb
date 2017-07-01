@@ -116,7 +116,7 @@
                                         </div>
 
                                         <div class="group">
-                                            <input name="telefone" type="number" required="" >
+                                            <input name="telefone" type="number" required=""  >
                                             <span class="highlight"></span>
                                             <span class="bar"></span>
                                             <label><span class="span-input">Telefone</span></label>
@@ -224,7 +224,7 @@
                                         <br>
                                         <center>
                                             <div class="group">
-                                                <button type="submit" class="w3-btn btn-primary w3-large w3-hover-white" >Cadastrar</button>                             
+                                                <button type="submit" class="w3-btn btn-primary w3-large w3-hover-white" >Continuar Cadastro</button>                             
                                             </div>    
                                         </center>
                                     </div>

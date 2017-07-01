@@ -28,35 +28,42 @@ import org.apache.commons.fileupload.servlet.ServletFileUpload;
 public class CarregaImagem {
 
     //CAMINHO A SER EDITADO
-    public static String caminho = "C:\\Users\\Aluno\\Documents\\NetBeansProjects";
+    public static String caminho = "C:\\Users\\SARA\\Documents\\NetBeansProjects";
 
     public void carregabftodos() {
         try {
             Dal dal = new Dal();
             Bikefood bf = new Bikefood();
             ArrayList<Bikefood> bikes = new ArrayList(dal.getList(bf));
+
             for (int x = 0; x < bikes.size(); x++) {
-                String path = bikes.get(x).getImg();
+
+                String path = bikes.get(x).getImg(); //caminho para baixar arquivos do banco
+
                 if (path.contains("br/com/bikefood/image")) {
-                    //CAMINHO PARA IMAGENS
+
                     path = caminho + "\\BikeWeb\\web\\Image\\bfpadrao.jpg";
+
                 } else {
+
                     path = bikes.get(x).getImg();
                     path = path.replaceAll("file:///", "");
+
                 }
+
                 System.out.println(path);
-                BufferedImage imagem = ImageIO.read(new File(path));
 
-                //CAMINHO PARA DOWNLAD DE IMAGENS
-                ImageIO.write(imagem, "JPEG", new File(caminho + "\\BikeWeb\\web\\ImageBikes\\bk" + bikes.get(x).getId() + ".jpg"));
+                BufferedImage imagem = ImageIO.read(new File(path));// ler imagem
 
+                ImageIO.write(imagem, "JPEG", new File(caminho + "\\BikeWeb\\web\\ImageBikes\\bk" + bikes.get(x).getId() + ".jpg"));// salvar imagem em um diretório
             }
+
         } catch (Exception ee) {
             ee.printStackTrace();
         }
     }
 
-    public void carregabf(Userr u) {
+    /* public void carregabf(Userr u) {
         try {
             Dal dal = new Dal();
             ArrayList<Bikefood> bikes = new ArrayList(dal.getBikes((int) u.getId()));
@@ -79,8 +86,7 @@ public class CarregaImagem {
         } catch (Exception ee) {
             ee.printStackTrace();
         }
-    }
-
+    }*/
     public void carregaCard(Bikefood bkf) {
         try {
             Dal dal = new Dal();
@@ -103,7 +109,7 @@ public class CarregaImagem {
         }
     }
 
-    public void carregaFav(Userr u) {
+    /*  public void carregaFav(Userr u) {
         try {
 
             Dal dal = new Dal();
@@ -125,8 +131,7 @@ public class CarregaImagem {
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
-
+    }*/
     public void DeletaArquivos(String dir) {
         try {
 

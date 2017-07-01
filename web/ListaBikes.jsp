@@ -26,7 +26,7 @@
 
     </head>
     <body>
-        
+
         <% Userr u = (Userr) request.getSession().getAttribute("user"); %>
 
         <nav class="w3-sidebar w3-black w3-collapse w3-top w3-large w3-padding" style="z-index:3;width:300px;font-weight:bold;" id="mySidebar"><br>
@@ -63,28 +63,86 @@
                 <%  Bikefood bf = new Bikefood();
                     Dal dal = new Dal();
                     ArrayList<Bikefood> bikes = new ArrayList(dal.getList(bf));
-                    for (int i = 0; i < bikes.size(); i++) {    %>
+
+                    if (u.getIdType().getUserType().equals("Default")) {
+                        dal = new Dal();
+                        ArrayList<Favorites> fav = new ArrayList(dal.getFav(u));//lista de favoritos do usuario
+
+                        if (fav.size() != bikes.size()) {
+                            for (int a = 0; a < bikes.size(); a++) {// adiciona bike foods favoritos em existe
+                                for (int s = 0; s < fav.size(); s++) {
+                                    if (bikes.get(a).getId() == fav.get(s).getIdBikefood().getId()) {
+                                        bikes.remove(bikes.get(a));
+
+                                    }
+                                }
+                            }
+                        }
+
+                        ArrayList<Bikefood> nova = bikes;
+
+                        if (fav.size() != bikes.size()) {
+                            for (int i = 0; i < nova.size(); i++) {  //visualiza todos os bikefoods que não são favoritos %>
 
                 <div class="w3-half w3-container">
-                    <div class="w3-topbar w3-border-amber">
-                        <img src="./ImageBikes/bk<%=bikes.get(i).getId() %>.jpg" style="width:100%; height: 300px;">
-                        <h2>Nome: <%=bikes.get(i).getName() %></h2>
-                         <a href="VisualizaBikeServlet?id=<%= bikes.get(i).getId() %>" class="w3-button w3-black w3-padding-large w3-large">Visualizar</a>
-                         <%
-                         dal = new Dal();
-                         
-                         ArrayList<Favorites> existe = new ArrayList(dal.getFav(u));
-                         
-                         
-                         %>
-                          <a href="FavoritarBikeServlet?id=<%= bikes.get(i).getId() %>" class="w3-button w3-black w3-padding-large w3-large">Visualizar</a>
-                         <p>Localização: <%=bikes.get(i).getLocations().get(bikes.get(i).getLocations().size()-1).getStreet() %> - <%=bikes.get(i).getLocations().get(bikes.get(i).getLocations().size()-1).getDistrict()  %>
-                            </p>
-                        <p>Número: <%=bikes.get(i).getLocations().get(bikes.get(i).getLocations().size()-1).getNumber() %></p>
+
+                    <div class="w3-topbar w3-border-amber w3-hover-border-blue">
+                        <img src="./ImageBikes/bk<%=nova.get(i).getId()%>.jpg" style="width:100%; height: 270px;">
+                        <h2>Nome: <%=nova.get(i).getName()%></h2>
+                        <a href="VisualizaBikeServlet?id=<%= nova.get(i).getId()%>" class="w3-button w3-black w3-padding-large w3-large">Visualizar</a>               
+                        <a href="FavoritarServlet?id=<%= nova.get(i).getId()%>" class="w3-button w3-black w3-padding-large w3-large">Favoritar</a> <br> <br>
+                        <p>Especialidade: <%=nova.get(i).getType().getType()%></p>
+                        <p>Localização: <%=nova.get(i).getLocations().get(nova.get(i).getLocations().size() - 1).getStreet()%> - <%=nova.get(i).getLocations().get(bikes.get(i).getLocations().size() - 1).getDistrict()%>
+                        </p>
+                        <p>Número: <%=nova.get(i).getLocations().get(nova.get(i).getLocations().size() - 1).getNumber()%></p>
                     </div>
+
                 </div>
 
-                <% }%>
+                <% }
+                    }
+                    if (fav.isEmpty()== false) {
+                        for (int f = 0; f < fav.size(); f++) { // visualiza bike foods favoritos %>
+
+                <div class="w3-half w3-container">
+
+                    <div class="w3-topbar w3-border-amber w3-hover-border-blue">
+                        <img src="./ImageBikes/bk<%=fav.get(f).getIdBikefood().getId()%>.jpg" style="width:100%; height: 270px;">
+                        <h2>Nome: <%=fav.get(f).getIdBikefood().getName()%></h2>
+                        <a href="VisualizaBikeServlet?id=<%= fav.get(f).getIdBikefood().getId()%>" class="w3-button w3-black w3-padding-large w3-large">Visualizar</a>  <br> <br>
+                        <p>Status: Favoritada </p>
+                        <p>Especialidade: <%=fav.get(f).getIdBikefood().getType().getType()%></p>
+                        <p>Localização: <%=fav.get(f).getIdBikefood().getLocations().get(fav.get(f).getIdBikefood().getLocations().size() - 1).getStreet()%> - <%=fav.get(f).getIdBikefood().getLocations().get(fav.get(f).getIdBikefood().getLocations().size() - 1).getDistrict()%>
+                        </p>
+                        <p>Número: <%=fav.get(f).getIdBikefood().getLocations().get(fav.get(f).getIdBikefood().getLocations().size() - 1).getNumber()%></p>
+                    </div>
+
+                </div>
+
+                <% }
+                    }
+
+                } else if (u.getIdType().getUserType().equals("Emp")) {
+
+                    for (int o = 0; o < bikes.size(); o++) {  //visualiza todos os bikefoods que não são favoritos %>
+
+                <div class="w3-half w3-container">
+
+                    <div class="w3-topbar w3-border-amber w3-hover-border-blue">
+                        <img src="./ImageBikes/bk<%=bikes.get(o).getId()%>.jpg" style="width:100%; height: 270px;">
+                        <h2>Nome: <%=bikes.get(o).getName()%></h2>
+                        <a href="VisualizaBikeServlet?id=<%= bikes.get(o).getId()%>" class="w3-button w3-black w3-padding-large w3-large">Visualizar</a>
+                        <p>Especialidade: <%=bikes.get(o).getType().getType()%></p>
+                        <p>Localização: <%=bikes.get(o).getLocations().get(bikes.get(o).getLocations().size() - 1).getStreet()%> - <%=bikes.get(o).getLocations().get(bikes.get(o).getLocations().size() - 1).getDistrict()%>
+                        </p>
+                        <p>Número: <%=bikes.get(o).getLocations().get(bikes.get(o).getLocations().size() - 1).getNumber()%></p>
+                    </div>
+
+                </div>
+
+                <% }
+                    }
+                %>
             </div>
         </div>
 
