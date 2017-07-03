@@ -27,14 +27,18 @@
         .w3-half img:hover{opacity:1}
     </style>
     <body>
-        <% Userr us = (Userr) request.getAttribute("user");%>
+        <% Userr us = (Userr) request.getAttribute("user");
+        System.out.print(us.getName());
+        Dal d = new Dal();
+        ArrayList<Bikefood> bikes = new ArrayList( d.getBikes((int) us.getId()) );
+        %>
 
         <!-- Sidebar/menu -->
         <nav class="w3-sidebar w3-black w3-collapse w3-top w3-large w3-padding" style="z-index:3;width:300px;font-weight:bold;" id="mySidebar"><br>
             <a href="javascript:void(0)" onclick="w3_close()" class="w3-button w3-hide-large w3-display-topleft" style="width:100%;font-size:22px">Close Menu</a>
             <center>
                 <div class="w3-container">
-                    <h3 class="w3-padding-64"><b>Bem-Vindo<br>${nome_user}</b></h3>
+                    <h3 class="w3-padding-64"><b>Bem-Vindo<br><%=us.getName() +" "+ us.getLastName()  %></b></h3>
                 </div>
             </center>
             <div class="w3-bar-block">
@@ -59,7 +63,7 @@
 
             <!-- Header -->
             <div class="w3-container" style="margin-top:40px" id="showcase">
-                <h1 class="w3-xxlarge"><b>Bem - Vindo: </b></h1>
+                <h1 class="w3-xxlarge"><b>Você Possui: <%=bikes.size() %> Bike Foods Cadastrados</b></h1>
                 <center>
                     <hr style="width:150px;border:5px solid blue" class="w3-round">
                 </center>
@@ -79,9 +83,7 @@
                     <!-- Wrapper for slides -->
                     <div class="carousel-inner">
                         <%
-                            Dal dal = new Dal();
-                            ArrayList<Bikefood> ar = new ArrayList(dal.getBikes((int) us.getId()));
-                            if (ar.isEmpty()) { %>
+                            if (bikes.isEmpty()) { %>
                             
                         <div class="item active">
                             <h1 class="w3-xlarge">Você não possui Bikes Cadastrados</h1>
@@ -90,11 +92,11 @@
                         </div>
                         
                         <% } else {
-                            for (int i = 0; i < ar.size(); i++) {
+                            for (int i = 0; i < bikes.size(); i++) {
                         %>
                         
                         <div class="item active">
-                            <img src="./ImageBikes/<% ar.get(i).getImg();%>" alt="Bikefood" style="width:100%;">
+                            <img src="./ImageBikes/<%=bikes.get(i).getImg() %>" alt="Bikefood" style="width:100%;">
                         </div>
                         <%}
                             };%>
@@ -241,24 +243,12 @@
 
             <!-- Contact -->
             <div class="w3-container" id="contact" style="margin-top:75px">
-                <h1 class="w3-xxxlarge w3-text-red"><b>Contact.</b></h1>
-                <hr style="width:50px;border:5px solid red" class="w3-round">
-                <p>Do you want us to style your home? Fill out the form and fill me in with the details :) We love meeting new people!</p>
-                <form action="/action_page.php" target="_blank">
-                    <div class="w3-section">
-                        <label>Name</label>
-                        <input class="w3-input w3-border" type="text" name="Name" required>
-                    </div>
-                    <div class="w3-section">
-                        <label>Email</label>
-                        <input class="w3-input w3-border" type="text" name="Email" required>
-                    </div>
-                    <div class="w3-section">
-                        <label>Message</label>
-                        <input class="w3-input w3-border" type="text" name="Message" required>
-                    </div>
-                    <button type="submit" class="w3-button w3-block w3-padding-large w3-red w3-margin-bottom">Send Message</button>
-                </form>  
+                <h1 class="w3-xxxlarge w3-text-blue"><b>Obtenha o iBKF para Desktop</b></h1>
+                <hr style="width:50px;border:5px solid blue" class="w3-round">
+                <p>Você quer gerenciar seus Bike Foods com mais eficiência? Deseja ter controle completo sobre os locais em que seus Bike Foods estarão?
+                 Obetenha o iBKF para desktop, instale-o em seu computador e cadastre seus cardápios, Bikes e localizações, edite seu perfil e obtenha informações sobre a modalidade Food Bikes.
+                 iBKF - BIKEFOOD DE UM JEITO QUE VOCÊ NUNCA VIU!!!</p>
+                 <button href="https://github.com/samuelleand/Bikefood" class="w3-button w3-block w3-blue-gray w3-xxlarge" style="width:80%">Obter iBKF para Desktop</button>
             </div>
 
             <!-- End page content -->

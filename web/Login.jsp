@@ -37,7 +37,7 @@
                     <div class="row">
                         <div class="col-md-offset-3 col-md-6" style="background-color: black; padding: 30px 20px; opacity: 0.9;">
                             <div class="form-login" style="margin: 20px;">
-                                <form  action="LoginServlet" method="GET" class="form-group">
+                                <form  action="LoginServlet" method="POST" class="form-group">
                                     <%
                                         try {
                                             Boolean erro = (Boolean) request.getAttribute("erro");
