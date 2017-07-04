@@ -76,7 +76,7 @@
             <center>
                 <div class="w3-container" style="margin-top:10px" >
                     <div class="w3-display-container w3-container">
-                        <img src="./Image/bk.jpg" alt="Seu Bikefood" style="width:95%">
+                        <img src="./ImageBikes/bk<%=bf.getId()  %>.jpg" alt="Seu Bikefood" style="width:95%">
                         <div class="w3-display-topleft w3-text-black" style="padding:24px 48px">
                             <h1 class="w3-xxxlarge w3-hide-small"><%=bf.getName() %></h1>
                             <h1 class="w3-xlarge">Telefone<%=bf.getTel()  %></h1>
@@ -127,12 +127,12 @@
                     for (int i = 0; i < c.size(); i++) {%>
 
                 <div class="w3-third w3-container w3-margin-bottom">
-                    <img src="./ImageCardapios/product<%=c.get(i).getId() %>.png" alt="Norway" style="width:100%" class="w3-hover-opacity">
+                    <img src="./ImageCardapios/product<%=c.get(i).getId() %>.png" alt="Norway" style="width:100%; height: 270px;" class="w3-hover-opacity">
                     <div class="w3-container w3-white">
                         <br>
-                        <p><b>Nome: <% c.get(i).getName(); %></b></p>
-                        <p><b>Preço: <% c.get(i).getPrice(); %></b></p>
-                        <p> Ingredientes: <% c.get(i).getIngredients(); %></p>
+                        <p><b>Nome: <%=c.get(i).getName() %></b></p>
+                        <p><b>Preço: <%= c.get(i).getPrice() %></b></p>
+                        <p> Ingredientes: <%=c.get(i).getIngredients() %></p>
                     </div>
                 </div>
 

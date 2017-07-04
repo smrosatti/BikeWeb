@@ -105,7 +105,7 @@ public class Dal implements Serializable {
     public List<Product> getProducts(int b) {
         EntityManager em = getEntityManager();
         try {
-            String sql = "select t from t where t.idBikefood.idBikefood = " + b;
+            String sql = "select t from Product t where t.idBikefood.idBikefood = " + b;
             Query query = getEntityManager().createQuery(sql);
             List<Product> list = query.getResultList();
             return list;
