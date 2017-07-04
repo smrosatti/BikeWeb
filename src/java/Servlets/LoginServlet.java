@@ -84,7 +84,7 @@ public class LoginServlet extends HttpServlet {
                         rd.forward(request, response);
                     }
 
-                } else if (i - 1 == usuarios.size()) {
+                } else if (i + 1 == usuarios.size()) {
                     System.out.println("não existe");
                     request.setAttribute("erro", true);
                     RequestDispatcher rd = request.getRequestDispatcher("Login.jsp");
