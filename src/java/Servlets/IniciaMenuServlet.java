@@ -33,7 +33,7 @@ public class IniciaMenuServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try {
             
-            Userr u = (Userr) request.getAttribute("user");
+            Userr u = (Userr) request.getSession().getAttribute("user");
             
             if(u.getIdType().getUserType().equals("Default")){
                 request.setAttribute("user", u);

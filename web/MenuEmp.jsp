@@ -1,8 +1,4 @@
-<%-- 
-    Document   : MenuEmp
-    Created on : 22/06/2017, 15:07:11
-    Author     : Aluno
---%>
+
 
 <%@page import="Servlets.LoginServlet"%>
 <%@page import="java.util.ArrayList"%>
@@ -27,7 +23,7 @@
         .w3-half img:hover{opacity:1}
     </style>
     <body>
-        <% Userr us = (Userr) request.getAttribute("user");
+        <% Userr us = (Userr) request.getSession().getAttribute("user");
             System.out.print(us.getName());
             Dal d = new Dal();
             ArrayList<Bikefood> bikes = new ArrayList(d.getBikes((int) us.getId()));
@@ -95,11 +91,14 @@
                             for (int i = 0; i < bikes.size(); i++) {
                         %>
 
-                        <div class="item active">
-                            <img src="./ImageBikes/bk<%= bikes.get(i).getId()%>.jpg" alt="Bikefood" style="width:70%;">
+                        <div class="item <%if (bikes.get(0) == bikes.get(i)) {
+                                out.print("active");
+                            }%>">
+                            <img src="./ImageBikes/bk<%= bikes.get(i).getId()%>.jpg" alt="Bikefood" style="width:100%; height: 700px;">
                         </div>
-                        <%}
-                            };%>
+                        <%  }
+                            }
+                        %>
                     </div>
 
                     <!-- Left and right controls -->
@@ -114,37 +113,36 @@
                 </div>
             </div>
 
-            <!-- 
-            <div class="w3-row-padding">
-                <div class="w3-half">
-                    <img src="/w3images/kitchenconcrete.jpg" style="width:100%" onclick="onClick(this)" alt="Concrete meets bricks">
-                    <img src="/w3images/livingroom.jpg" style="width:100%" onclick="onClick(this)" alt="Light, white and tight scandinavian design">
-                    <img src="/w3images/diningroom.jpg" style="width:100%" onclick="onClick(this)" alt="White walls with designer chairs">
-                </div>
 
-                <div class="w3-half">
-                    <img src="/w3images/atrium.jpg" style="width:100%" onclick="onClick(this)" alt="Windows for the atrium">
-                    <img src="/w3images/bedroom.jpg" style="width:100%" onclick="onClick(this)" alt="Bedroom and office in one space">
-                    <img src="/w3images/livingroom2.jpg" style="width:100%" onclick="onClick(this)" alt="Scandinavian design">
-                </div>
-            </div>
-            -->
 
             <div class="w3-container" id="services" style="margin-top:75px">
-                <h1 class="w3-xxxlarge w3-text-black"><b><center>Meus Bike Fooods</center></b></h1>
+                <h1 class="w3-xxxlarge w3-text-black"><center><b>Meus Bike Fooods</b></center></h1>
                 <center> <hr style="width:150px;border:5px solid blue" class="w3-round"></center>
-                <div class="w3-row w3-container" style="margin:50px 0">
-                    <% for (int a = 0; a < bikes.size(); a++) {%>
-                    <div class="w3-half w3-container">
-                        <div class="w3-topbar w3-border-amber">
-                            <img src="./ImageBikes/bk<%=bikes.get(a).getId()%>.jpg" style="width:100%">
-                            <h2><%= bikes.get(a).getName()%></h2>
-                            <p><a href="#jeans" class="w3-button w3-black w3-padding-large w3-large">Visualizar</a></p>
-                            <p>Tipo: <%=bikes.get(a).getType().getType()%></p>
+
+
+                <form action="VisualizaBikeServlet" method="POST" class="form-group">
+                    <div class="w3-row w3-container" style="margin:50px 0">
+
+                        <% for (int a = 0; a < bikes.size(); a++) {
+
+                        %>
+
+                        <div class="w3-half w3-container">
+                            <div class="w3-topbar w3-border-amber">
+                                <img src="./ImageBikes/bk<%=bikes.get(a).getId()%>.jpg" style="width:100%; height: 300px;">
+                                <h2><%= bikes.get(a).getName()%></h2>
+
+                                <a href="VisualizaBikeServlet?id=<%= bikes.get(a).getId() %>" class="w3-button w3-black w3-padding-large w3-large">Visualizar</a>
+                                <p>Tipo: <%=bikes.get(a).getType().getType()%></p>
+                            </div>
+
                         </div>
-                        <%};%>
+
+                        <%}%>
+
                     </div>
-                </div>
+                </form>
+
             </div>
 
             <!-- Modal for full size images on click-->
@@ -156,51 +154,35 @@
                 </div>
             </div>
 
-           
+
 
             <!-- Packages / Pricing Tables -->
             <div class="w3-container" id="packages" style="margin-top:75px">
-                <h1 class="w3-xxxlarge w3-text-red"><b>Packages.</b></h1>
-                <hr style="width:50px;border:5px solid red" class="w3-round">
-                <p>Some text our prices. Lorem ipsum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure</p>
+                <center>
+                    <h1 class="w3-xxxlarge w3-text-black"><b>Meu Perfil</b></h1>
+                    <hr style="width:50px;border:5px solid blue" class="w3-round">
+                </center>
+                <p>Cadastre seu Bikefood, suas próximas localizações e produtos! Seja um empreendedor e expanda seu negócio divulgando-o.</p>
             </div>
 
             <div class="w3-row-padding">
-                <div class="w3-half w3-margin-bottom">
+                <div class=" w3-hover-border-blue w3-margin-bottom">
                     <ul class="w3-ul w3-light-grey w3-center">
-                        <li class="w3-dark-grey w3-xlarge w3-padding-32">Basic</li>
-                        <li class="w3-padding-16">Floorplanning</li>
-                        <li class="w3-padding-16">10 hours support</li>
-                        <li class="w3-padding-16">Photography</li>
-                        <li class="w3-padding-16">20% furniture discount</li>
-                        <li class="w3-padding-16">Good deals</li>
-                        <li class="w3-padding-16">
-                            <h2>$ 199</h2>
-                            <span class="w3-opacity">per room</span>
-                        </li>
+                        <li class="w3-dark-grey w3-xlarge w3-padding-32">Perfil Empreendedor</li>
+                        <li class="w3-padding-16">Nome: <%=us.getName()%></li>
+                        <li class="w3-padding-16">Sobrenome: <%=us.getLastName()%></li>
+                        <li class="w3-padding-16">Email: <%=us.getEmail()%></li>
+                        <li class="w3-padding-16">CPF: <%=us.getCpf()%></li>
+                        <li class="w3-padding-16">Data de Nascimento: <%=us.getBirthday()%></li>
+                        <li class="w3-padding-16">Tipo de Usuário: <%=us.getIdType().getUserType()%></li>
+
                         <li class="w3-light-grey w3-padding-24">
-                            <button class="w3-button w3-white w3-padding-large w3-hover-black">Sign Up</button>
+                            <button class="w3-button w3-blue w3-padding-large w3-hover-black">Editar Perfil</button>
                         </li>
                     </ul>
                 </div>
 
-                <div class="w3-half">
-                    <ul class="w3-ul w3-light-grey w3-center">
-                        <li class="w3-red w3-xlarge w3-padding-32">Pro</li>
-                        <li class="w3-padding-16">Floorplanning</li>
-                        <li class="w3-padding-16">50 hours support</li>
-                        <li class="w3-padding-16">Photography</li>
-                        <li class="w3-padding-16">50% furniture discount</li>
-                        <li class="w3-padding-16">GREAT deals</li>
-                        <li class="w3-padding-16">
-                            <h2>$ 249</h2>
-                            <span class="w3-opacity">per room</span>
-                        </li>
-                        <li class="w3-light-grey w3-padding-24">
-                            <button class="w3-button w3-red w3-padding-large w3-hover-black">Sign Up</button>
-                        </li>
-                    </ul>
-                </div>
+
             </div>
 
             <!-- Contact -->
@@ -210,14 +192,16 @@
                 <p>Você quer gerenciar seus Bike Foods com mais eficiência? Deseja ter controle completo sobre os locais em que seus Bike Foods estarão?
                     Obetenha o iBKF para desktop, instale-o em seu computador e cadastre seus cardápios, Bikes e localizações, edite seu perfil e obtenha informações sobre a modalidade Food Bikes.
                     iBKF - BIKEFOOD DE UM JEITO QUE VOCÊ NUNCA VIU!!!</p>
-                <button href="https://github.com/samuelleand/Bikefood" class="w3-button w3-block w3-blue-gray w3-xxlarge" style="width:80%">Obter iBKF para Desktop</button>
+                <button class="w3-button w3-block w3-blue-gray w3-xxlarge" type="submit" value ="GitHub" 
+                        onclick="window.open('https://github.com/samuelleand/Bikefood', '_blank');" style="width:80%">Obter o iBKF para Desktop
+                </button>
             </div>
 
             <!-- End page content -->
         </div>
 
         <!-- W3.CSS Container -->
-        <div class="w3-light-grey w3-container w3-padding-32" style="margin-top:75px;padding-right:58px"><p class="w3-right">Powered by <a href="https://www.w3schools.com/w3css/default.asp" title="W3.CSS" target="_blank" class="w3-hover-opacity">w3.css</a></p></div>
+        <div class="w3-light-grey w3-container w3-padding-32" style="margin-top:75px;padding-right:58px"><p class="w3-right">Bike Foods <a href="http://bikefood.net/" title="W3.CSS" target="_blank" class="w3-hover-opacity">Empreendedorismo sobre rodas</a></p></div>
 
         <script>
             // Script to open and close sidebar

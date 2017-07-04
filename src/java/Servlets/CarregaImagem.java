@@ -20,15 +20,14 @@ import javax.imageio.ImageIO;
  */
 public class CarregaImagem {
 
-
     public void carregabf(Userr u) {
         try {
             Dal dal = new Dal();
-            ArrayList<Bikefood> bikes = new ArrayList(dal.getBikes((int) u.getId()));
+            ArrayList<Bikefood> bikes = new ArrayList(dal.getBikes(1));
             for (int x = 0; x < bikes.size(); x++) {
                 String path = bikes.get(x).getImg();
                if(path.contains("br/com/bikefood/image")){
-                    path = "C:\\Users\\SARA\\Documents\\NetBeansProjects\\Bikefood\\src\\"+bikes.get(x).getImg();            
+                    path = "C:\\Users\\Aluno\\Documents\\NetBeansProjects\\Bikefood\\src\\br\\com\\bikefood\\image\\bfpadrao.jpg";            
                 }else{
                     path = bikes.get(x).getImg(); 
                     path = path.replaceAll("file:///", "");
@@ -36,7 +35,7 @@ public class CarregaImagem {
                 System.out.println(path);
                  BufferedImage imagem = ImageIO.read(new File(path));
 
-                ImageIO.write(imagem, "JPEG", new File("C:\\Users\\SARA\\Documents\\NetBeansProjects\\Bikefood-Web\\BikeWeb\\web\\ImageBikes\\bk"+bikes.get(x).getId()+".jpg" ));
+                ImageIO.write(imagem, "JPEG", new File("C:\\Users\\Aluno\\Documents\\NetBeansProjects\\BikeWeb\\web\\ImageBikes\\bk"+bikes.get(x).getId()+".jpg" ));
             
             }
         } catch (Exception ee) {
@@ -51,7 +50,7 @@ public class CarregaImagem {
             for (int x = 0; x < bikes.size(); x++) {
                 String path = bikes.get(x).getImg();
                 if(path.contains("br/com/bikefood/image")){
-                    path = "C:\\Users\\SARA\\Documents\\NetBeansProjects\\Bikefood\\src\\"+bikes.get(x).getImg();            
+                    path = "C:\\Users\\Aluno\\Documents\\NetBeansProjects\\Bikefood\\src\\br\\com\\bikefood\\image\\product.jpg";            
                 }else{
                     path = bikes.get(x).getImg(); 
                     path = path.replaceAll("file:///", "");
@@ -59,7 +58,7 @@ public class CarregaImagem {
                 System.out.println(path);
                  BufferedImage imagem = ImageIO.read(new File(path));
 
-                ImageIO.write(imagem, "JPEG", new File("C:\\Users\\SARA\\Documents\\NetBeansProjects\\Bikefood-Web\\BikeWeb\\web\\ImageCardapios\\product"+bikes.get(x).getId()+".png" ));
+                ImageIO.write(imagem, "JPEG", new File("C:\\Users\\Aluno\\Documents\\NetBeansProjects\\BikeWeb\\web\\ImageCardapios\\product"+bikes.get(x).getId()+".png" ));
             }
         } catch (Exception ee) {
             ee.printStackTrace();

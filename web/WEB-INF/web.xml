@@ -17,8 +17,8 @@
         <servlet-class>Servlets.EditarCliServlet</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>VisualizaBike</servlet-name>
-        <servlet-class>Servlets.VisualizaBike</servlet-class>
+        <servlet-name>VisualizaBikeServlet</servlet-name>
+        <servlet-class>Servlets.VisualizaBikeServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>IniciaMenuServlet</servlet-name>
@@ -41,8 +41,8 @@
         <url-pattern>/EditarCliServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>VisualizaBike</servlet-name>
-        <url-pattern>/VisualizaBike</url-pattern>
+        <servlet-name>VisualizaBikeServlet</servlet-name>
+        <url-pattern>/VisualizaBikeServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>IniciaMenuServlet</servlet-name>

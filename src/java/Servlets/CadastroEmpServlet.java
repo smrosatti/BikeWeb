@@ -62,6 +62,9 @@ public class CadastroEmpServlet extends HttpServlet {
                 if (img == null || img.equals(" ")) {
                     img = "br/com/bikefood/image/user_padrao.png";
                 }
+                
+                  uv = new UserValidation();
+                String hash = uv.hashpass(senha);
 
                 Gender genero = new Gender();
 
@@ -78,7 +81,7 @@ public class CadastroEmpServlet extends HttpServlet {
                     genero.setIdGender(2L);
                 }
 
-                Userr u = new Userr(nome, sobrenome, senha, genero, ut, cpf, email, dt, ("file:///"+img));
+                Userr u = new Userr(nome, sobrenome, hash, genero, ut, cpf, email, dt, ("file:///"+img));
                 Dal dal = new Dal();
                 dal.create(u);
 

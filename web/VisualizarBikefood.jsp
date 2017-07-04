@@ -36,19 +36,22 @@
 
     <body>
 
-        <% Bikefood bf = (Bikefood) request.getAttribute("bike_exibido"); %>
+        <% Bikefood bf = (Bikefood) request.getAttribute("bike");
+
+            Dal dal = new Dal();
+            ArrayList<Product> c = new ArrayList(dal.getProducts((int) bf.getId()));
+
+        %>
 
         <nav class="w3-sidebar w3-black w3-collapse w3-top w3-large w3-padding" style="z-index:3;width:300px;font-weight:bold;" id="mySidebar"><br>
             <a href="javascript:void(0)" onclick="w3_close()" class="w3-button w3-hide-large w3-display-topleft" style="width:100%;font-size:22px">Close Menu</a>
             <center>
                 <div class="w3-container">
-                    <h3 class="w3-padding-64"><b>Bike Food: <br>${bike_nome}</b></h3>
+                    <h3 class="w3-padding-64"><b>Bike Food: <br><%=bf.getName()  %></b></h3>
                 </div>
             </center>
             <div class="w3-bar-block">
-                <% String volta = (String) request.getAttribute("menu");
-                    Userr user = (Userr) request.getAttribute("user");
-                %>
+
                 <a href= "IniciaMenuServlet" type="submit" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Menu Inicial</a>
                 <a href="index.html" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Sair</a> 
             </div>
@@ -75,8 +78,8 @@
                     <div class="w3-display-container w3-container">
                         <img src="./Image/bk.jpg" alt="Seu Bikefood" style="width:95%">
                         <div class="w3-display-topleft w3-text-black" style="padding:24px 48px">
-                            <h1 class="w3-xxxlarge w3-hide-small">${bike_nome} Bike</h1>
-                            <h1 class="w3-xlarge">Localização ${bike_local}</h1>
+                            <h1 class="w3-xxxlarge w3-hide-small"><%=bf.getName() %></h1>
+                            <h1 class="w3-xlarge">Telefone<%=bf.getTel()  %></h1>
                             <p><a href="" class="w3-button w3-black w3-padding-large w3-large">Novo Bike Food</a></p>
                         </div>
                     </div>
@@ -89,12 +92,14 @@
                     <hr style="width:150px;border:5px solid blue" class="w3-round">
                 </center>
             </div>
-
+                            <!-- GOOGLE MAPS -->
             <div id="map"  style="height: 100%; margin: 50px;
-                 padding: 300px;" ></div>
+                padding: 300px;" >
+                     
+            </div>
 
 
-
+                            <!-- iNICIA CARDAPIO-->
             <div class="w3-container" style="margin-top:40px" id="showcase">
                 <h1 class="w3-xxlarge"><center><b>Cardápio</b></center></h1>
                 <center>
@@ -105,10 +110,7 @@
             <br><br>
 
             <div class="w3-row-padding">
-                <% Dal dal = new Dal();
-                    ArrayList<Product> c = new ArrayList(dal.getProducts((int) bf.getId()));
-
-                    if (c.isEmpty()) { %>
+                <%                    if (c.isEmpty()) { %>
 
                 <div class="w3-container" style="margin-top:10px" >
                     <div class="w3-display-container w3-container">
@@ -122,10 +124,10 @@
                 </div>
 
                 <%  } else {
-                        for(int i = 0; i<c.size(); i++){%>
+                    for (int i = 0; i < c.size(); i++) {%>
 
                 <div class="w3-third w3-container w3-margin-bottom">
-                    <img src="./ImageCardapio/<% c.get(i).getImg(); %>" alt="Norway" style="width:100%" class="w3-hover-opacity">
+                    <img src="./ImageCardapios/product<%=c.get(i).getId() %>.png" alt="Norway" style="width:100%" class="w3-hover-opacity">
                     <div class="w3-container w3-white">
                         <br>
                         <p><b>Nome: <% c.get(i).getName(); %></b></p>
@@ -134,7 +136,8 @@
                     </div>
                 </div>
 
-                <% } }
+                <% }
+                    }
                 %>
             </div>
         </div>

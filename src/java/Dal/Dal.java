@@ -105,10 +105,23 @@ public class Dal implements Serializable {
     public List<Product> getProducts(int b) {
         EntityManager em = getEntityManager();
         try {
-            String sql = "select t from Product t where t.idBikefood.idBikefood = " + b;
+            String sql = "select t from t where t.idBikefood.idBikefood = " + b;
             Query query = getEntityManager().createQuery(sql);
             List<Product> list = query.getResultList();
             return list;
+        } finally {
+            closeAll(em);
+        }
+    }
+    
+    public Bikefood findBike(int id) {
+        EntityManager em = getEntityManager();
+        try {
+            String sql = "select t from Bikefood t where t.idBikefood = " + id;
+            Query query = getEntityManager().createQuery(sql);
+            List<Bikefood> list = query.getResultList();
+            Bikefood bf = list.get(0);
+            return bf;
         } finally {
             closeAll(em);
         }

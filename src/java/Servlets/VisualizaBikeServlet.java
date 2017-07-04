@@ -5,9 +5,10 @@
  */
 package Servlets;
 
+import Dal.Dal;
 import Model.Bikefood;
-import Model.Userr;
 import java.io.IOException;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -32,11 +33,22 @@ public class VisualizaBikeServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try {
-            Bikefood bf = (Bikefood) request.getAttribute("bikefood");
-            request.setAttribute("bike_exibido", bf);
             
-            Userr u = (Userr) request.getAttribute("usermenu");
-            request.setAttribute("user", u);
+            int id = Integer.valueOf(request.getParameter("id"));
+            
+            Dal dal = new Dal();
+            Bikefood bf = dal.findBike(id);
+            
+            request.setAttribute("bike", bf);
+            
+            CarregaImagem prod = new CarregaImagem();
+            prod.carregaCard(bf);
+            
+             RequestDispatcher rd = request.getRequestDispatcher("VisualizarBikefood.jsp");
+             rd.forward(request, response);
+            
+            //Userr u = (Userr) request.getSession().getAttribute("user");
+            
             
             
         } catch (Exception e) {
