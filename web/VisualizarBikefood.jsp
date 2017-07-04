@@ -52,7 +52,7 @@
             </center>
             <div class="w3-bar-block">
 
-                <a href= "IniciaMenuServlet" type="submit" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Menu Inicial</a>
+                <a href= "IniciaMenuServlet" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Menu Inicial</a>
                 <a href="index.html" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Sair</a> 
             </div>
         </nav>
@@ -76,18 +76,20 @@
             <center>
                 <div class="w3-container" style="margin-top:10px" >
                     <div class="w3-display-container w3-container">
-                        <img src="./ImageBikes/bk<%=bf.getId()  %>.jpg" alt="Seu Bikefood" style="width:95%">
-                        <div class="w3-display-topleft w3-text-black" style="padding:24px 48px">
+                        <img src="./ImageBikes/bk<%=bf.getId() %>.jpg" alt="Seu Bikefood" style="width:70%; height: 70%;">
+                        <div class="w3-left-align w3-text-black" style="padding:24px 48px">
                             <h1 class="w3-xxxlarge w3-hide-small"><%=bf.getName() %></h1>
-                            <h1 class="w3-xlarge">Telefone<%=bf.getTel()  %></h1>
-                            <p><a href="" class="w3-button w3-black w3-padding-large w3-large">Novo Bike Food</a></p>
+                            <h1 class="w3-xlarge">Telefone: <%=bf.getTel()  %></h1>
+                            <h1 class="w3-xlarge">Localização: <%=bf.getLocations().get(bf.getLocations().size()-1).getStreet()%> - <%=bf.getLocations().get(bf.getLocations().size()-1).getDistrict() %></h1>
+                            <h1 class="w3-xlarge">Número: <%=bf.getLocations().get(bf.getLocations().size()-1).getNumber() %></h1>
+                           <!-- <p><a href="" class="w3-button w3-black w3-padding-large w3-large">Novo Bike Food</a></p>-->
                         </div>
                     </div>
                 </div>
             </center>
 
             <div class="w3-container" style="margin-top:15px" id="showcase">
-                <h1 class="w3-xlarge"><center><b>Localização Pelo Mapa</b></center></h1>
+                <h1 class="w3-xxlarge"><center><b>Localização Pelo Mapa</b></center></h1>
                 <center>
                     <hr style="width:150px;border:5px solid blue" class="w3-round">
                 </center>
@@ -118,7 +120,7 @@
                         <div class="w3-display-topleft w3-text-black" style="padding:24px 48px">
                             <h1 class="w3-xxxlarge w3-hide-small">Este Bike Food não possui cardápio</h1>
                             <h1 class="w3-xlarge">Obtenha o iBKF para Desktop e cadastre um Cardápio</h1>
-                            <p><a href="https://github.com/samuelleand/Bikefood" class="w3-button w3-black w3-padding-large w3-large">Obter o iBKF Desktop</a></p>
+                            <p><a href="https://github.com/samuelleand/Bikefood" class="w3-button w3-black w3-padding-large w3-large">Obter o iBKF para Desktop</a></p>
                         </div>
                     </div>
                 </div>
@@ -127,7 +129,7 @@
                     for (int i = 0; i < c.size(); i++) {%>
 
                 <div class="w3-third w3-container w3-margin-bottom">
-                    <img src="./ImageCardapios/product<%=c.get(i).getId() %>.png" alt="Norway" style="width:100%; height: 270px;" class="w3-hover-opacity">
+                    <img src="./ImageCardapios/product<%=c.get(i).getId() %>.jpg" alt="Norway" style="width:100%; height: 270px;" class="w3-hover-opacity">
                     <div class="w3-container w3-white">
                         <br>
                         <p><b>Nome: <%=c.get(i).getName() %></b></p>
@@ -141,6 +143,7 @@
                 %>
             </div>
         </div>
+              <div class="w3-light-grey w3-container w3-padding-32" style="margin-top:75px;padding-right:58px"><p class="w3-right">Bike Foods <a href="http://bikefood.net/" title="W3.CSS" target="_blank" class="w3-hover-opacity">Empreendedorismo sobre rodas</a></p></div>
 
         <script>
             // Script to open and close sidebar
@@ -164,8 +167,9 @@
             }
         </script>
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDYhQxVgG8sVDp6C9UroEtcYfGLtUlEP3U&callback=initMap"
+                
                 async defer>
-        </script>      
+        </script>
 
     </body>
 </html>

@@ -50,29 +50,43 @@ public class LoginServlet extends HttpServlet {
 
             System.out.println("Nome: " + login);
             System.out.println("Email: " + senha);
-            
-            CarregaImagem c = new CarregaImagem();
-                        c.carregabf(u);
+
 
             for (int i = 0; i < usuarios.size(); i++) {
                 if (usuarios.get(i).getEmail().equals(login) && usuarios.get(i).getPassword().equals(hash)) {
 
                     u = usuarios.get(i);
+                    
                      HttpSession session = request.getSession();
                      session.setAttribute("user", u);
 
                     System.out.println("OLA: " + u.getName());
 
                     if (u.getIdType().getUserType().equals("Default")) {
+                        
+                                            
+                            
+                        CarregaImagem c = new CarregaImagem();
+                        c.carregaFav(u);
+                        
+                        Thread.sleep(2000);
+                        
 
                         request.setAttribute("erro", false);
-                        request.setAttribute("nome_user", u.getName());
 
                         //request.setAttribute("user", u);
                         RequestDispatcher rd = request.getRequestDispatcher("MenuCli.jsp");
                         rd.forward(request, response);
 
                     } else if (u.getIdType().getUserType().equals("Emp")) {
+                        
+                                            
+                            
+                        CarregaImagem c = new CarregaImagem();
+                        c.carregabf(u);
+                        
+                        Thread.sleep(2000);
+                        
 
                         request.setAttribute("erro", false);
                         

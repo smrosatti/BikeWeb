@@ -94,7 +94,7 @@
                         <div class="item <%if (bikes.get(0) == bikes.get(i)) {
                                 out.print("active");
                             }%>">
-                            <img src="./ImageBikes/bk<%= bikes.get(i).getId()%>.jpg" alt="Bikefood" style="width:100%; height: 700px;">
+                            <img src="./ImageBikes/bk<%= bikes.get(i).getId() %>.jpg" alt="Bikefood" style="width:100%; height: 700px;">
                         </div>
                         <%  }
                             }
@@ -129,7 +129,7 @@
 
                         <div class="w3-half w3-container">
                             <div class="w3-topbar w3-border-amber">
-                                <img src="./ImageBikes/bk<%=bikes.get(a).getId()%>.jpg" style="width:100%; height: 300px;">
+                                <img src="./ImageBikes/bk<%=bikes.get(a).getId() %>.jpg" style="width:100%; height: 300px;">
                                 <h2><%= bikes.get(a).getName()%></h2>
 
                                 <a href="VisualizaBikeServlet?id=<%= bikes.get(a).getId() %>" class="w3-button w3-black w3-padding-large w3-large">Visualizar</a>

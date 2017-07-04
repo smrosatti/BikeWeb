@@ -36,6 +36,7 @@ public class VisualizaBikeServlet extends HttpServlet {
             
             int id = Integer.valueOf(request.getParameter("id"));
             
+            
             Dal dal = new Dal();
             Bikefood bf = dal.findBike(id);
             
@@ -43,6 +44,7 @@ public class VisualizaBikeServlet extends HttpServlet {
             
             CarregaImagem prod = new CarregaImagem();
             prod.carregaCard(bf);
+            Thread.sleep(2000);
             
              RequestDispatcher rd = request.getRequestDispatcher("VisualizarBikefood.jsp");
              rd.forward(request, response);
