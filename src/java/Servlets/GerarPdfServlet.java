@@ -5,8 +5,16 @@
  */
 package Servlets;
 
+import Dal.Dal;
+import Model.Bikefood;
+import Model.NotificationFactory;
+import Model.PdfGenerator;
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import javafx.scene.control.Alert;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -32,7 +40,29 @@ public class GerarPdfServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try {
             
+            
+            int id = Integer.valueOf(request.getParameter("bike"));
+            
+            Dal dal = new Dal();
+            Bikefood bf = dal.findBike(id);
+            
+                File a = new File("C:\\Users\\Aluno\\Downloads\\Cardapio.pdf");
+
+                if (a != null) {
+
+                    PdfGenerator pdf = new PdfGenerator();
+                    pdf.menuGenerator(a, bf);
+                    
+                    response.sendRedirect("VisualizaBikeServlet?id="+id);
+                    
+                    
+                    
+                }else{
+                    System.out.println("NAO DEU");
+                }
+            
         } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 

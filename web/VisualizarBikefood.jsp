@@ -4,6 +4,7 @@
     Author     : SARA
 --%>
 
+<%@page import="Model.Location"%>
 <%@page import="Model.Userr"%>
 <%@page import="Model.Product"%>
 <%@page import="java.util.ArrayList"%>
@@ -42,6 +43,8 @@
             ArrayList<Product> c = new ArrayList(dal.getProducts((int) bf.getId()));
 
             Userr u = (Userr) request.getSession().getAttribute("user");
+            
+            Location loc = new Location();
 
         %>
 
@@ -55,7 +58,7 @@
             <div class="w3-bar-block">
 
                 <a href= "IniciaMenuServlet" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Menu Inicial</a>
-                <a href= "GerarPdfServlet?id=<%=bf.getId()%>" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Gerar PDF do Cardápio</a>
+                <a href= "GerarPdfServlet?bike=<%=bf.getId()%>" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Gerar PDF do Cardápio</a>
                 <a href="index.html" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Sair</a> 
             </div>
         </nav>
@@ -84,7 +87,8 @@
                             <h1 class="w3-xxxlarge w3-hide-small"><%=bf.getName()%></h1>
                             <h1 class="w3-xlarge">Telefone: <%=bf.getTel()%></h1>
                             <h1 class="w3-xlarge">Localização: <%=bf.getLocations().get(bf.getLocations().size() - 1).getStreet()%> - <%=bf.getLocations().get(bf.getLocations().size() - 1).getDistrict()%></h1>
-                            <h1 class="w3-xlarge">Número: <%=bf.getLocations().get(bf.getLocations().size() - 1).getNumber()%></h1>
+                            <h1 class="w3-xlarge">Número: <%=bf.getLocations().get(bf.getLocations().size() - 1).getNumber() %></h1>
+                            <% loc = bf.getLocations().get(bf.getLocations().size()-1);  %>
                             <!-- <p><a href="" class="w3-button w3-black w3-padding-large w3-large">Novo Bike Food</a></p>-->
                         </div>
                     </div>
@@ -97,6 +101,39 @@
                     <hr style="width:150px;border:5px solid blue" class="w3-round">
                 </center>
             </div>
+
+
+                            <center>  <iframe
+                width="800"
+                height="500"
+                frameborder="1" style="border:5px;"
+                src="https://www.google.com/maps/embed/v1/place?key=AIzaSyAVUnTSrgqs8L3J72gPitYIbclHicAJLkg
+                &q=<%=loc.getNumber() %>-<%=loc.getStreet().replace(" ", "+") %>,<%=loc.getIdCity().getCityName().replace(" ", "+") %>-<%=loc.getIdCountry().getCountryName().replace(" ", "+") %>" allowfullscreen>
+            </iframe>
+                            </center>
+
+            <!-- GOOGLE MAPS API CAGADA-->
+            <!-- <script src='https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyBhKy4iSWcZp6EX9RY_pRJ1ZKlKl9htZ4U&q=Space+Needle,Seattle+WA" allowfullscreen'></script>
+             <div style='overflow:hidden;height:600px;width:620px;'>
+                 <div id='gmap_canvas' style='height:600px;width:620px;'></div>
+                 <style>#gmap_canvas img{max-width:none!important;background:none!important}</style>
+             </div> 
+             <a href='http://maps-generator.com/pt'>www.maps-generator.com</a> 
+             <script type='text/javascript' src='https://embedmaps.com/google-maps-authorization/script.js?id=430973df6ff1f8f8d8fe62675df12476dc3aa95b'></script>
+            <!--<script type='text/javascript'>
+                function init_map() {
+                    var myOptions = {zoom: 15, center: new google.maps.LatLng(-25.3704069, -49.07567130000001), mapTypeId: google.maps.MapTypeId.ROADMAP};
+                    map = new google.maps.Map(document.getElementById('gmap_canvas'), myOptions);
+                    marker = new google.maps.Marker({map: map, position: new google.maps.LatLng(-25.3704069, -49.07567130000001)});
+                    infowindow = new google.maps.InfoWindow({content: '<strong>mapa</strong><br> Avenida de Acesso<br> Quatro Barras<br>'});
+                    google.maps.event.addListener(marker, 'click', function () {
+                        infowindow.open(map, marker);
+                    });
+                    infowindow.open(map, marker);
+                }
+                google.maps.event.addDomListener(window, 'load', init_map);</script>-->
+
+
             <!-- GOOGLE MAPS -->
             <!--<div id="map"  style="height: 100%; margin: 50px;
                  padding: 300px;" >
@@ -174,25 +211,7 @@
             // }
         </script>
 
-        <script src='https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyBhKy4iSWcZp6EX9RY_pRJ1ZKlKl9htZ4U'></script>
-        <div style='overflow:hidden;height:400px;width:520px;'>
-            <div id='gmap_canvas' style='height:400px;width:520px;'></div>
-            <style>#gmap_canvas img{max-width:none!important;background:none!important}</style>
-        </div> 
-        <a href='http://maps-generator.com/pt'>www.maps-generator.com</a> 
-        <script type='text/javascript' src='https://embedmaps.com/google-maps-authorization/script.js?id=430973df6ff1f8f8d8fe62675df12476dc3aa95b'></script>
-        <script type='text/javascript'>
-            function init_map() {
-                var myOptions = {zoom: 12, center: new google.maps.LatLng(-25.3704069, -49.07567130000001), mapTypeId: google.maps.MapTypeId.ROADMAP};
-                map = new google.maps.Map(document.getElementById('gmap_canvas'), myOptions);
-                marker = new google.maps.Marker({map: map, position: new google.maps.LatLng(-25.3704069, -49.07567130000001)});
-                infowindow = new google.maps.InfoWindow({content: '<strong>mapa</strong><br> Vinte e Cinco de Janeiro <br> Quatro Barras<br>'});
-                google.maps.event.addListener(marker, 'click', function () {
-                    infowindow.open(map, marker);
-                });
-                infowindow.open(map, marker);
-            }
-            google.maps.event.addDomListener(window, 'load', init_map);</script>
+
 
         <!--<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDYhQxVgG8sVDp6C9UroEtcYfGLtUlEP3U&callback=initMap"
                 

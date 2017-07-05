@@ -59,6 +59,9 @@ public class LoginServlet extends HttpServlet {
                     
                      HttpSession session = request.getSession();
                      session.setAttribute("user", u);
+                     
+                      CarregaImagem all = new CarregaImagem();
+                        all.carregabftodos();
 
                     System.out.println("OLA: " + u.getName());
 

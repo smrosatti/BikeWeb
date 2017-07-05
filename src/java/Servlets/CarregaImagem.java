@@ -33,7 +33,7 @@ public class CarregaImagem {
                 String path = bikes.get(x).getImg();
                if(path.contains("br/com/bikefood/image")){
                    //CAMINHO PARA IMAGENS
-                    path = caminho+"\\Bikefood\\src\\br\\com\\bikefood\\image\\bfpadrao.jpg";            
+                    path = caminho+ "\\BikeWeb\\web\\Image\\bfpadrao.jpg";            
                 }else{
                     path = bikes.get(x).getImg(); 
                     path = path.replaceAll("file:///", "");
@@ -58,7 +58,7 @@ public class CarregaImagem {
                 String path = bikes.get(x).getImg();
                if(path.contains("br/com/bikefood/image")){
                    //CAMINHO PARA IMAGENS
-                    path = caminho+"\\Bikefood\\src\\br\\com\\bikefood\\image\\bfpadrao.jpg";            
+                    path = caminho+ "\\BikeWeb\\web\\Image\\bfpadrao.jpg";            
                 }else{
                     path = bikes.get(x).getImg(); 
                     path = path.replaceAll("file:///", "");
@@ -82,7 +82,7 @@ public class CarregaImagem {
             for (int x = 0; x < bikes.size(); x++) {
                 String path = bikes.get(x).getImg();
                 if(path.contains("br/com/bikefood/image")){
-                    path = caminho+"\\Bikefood\\src\\br\\com\\bikefood\\image\\product.jpg";            
+                    path = caminho + "\\BikeWeb\\web\\Image\\product.png";          
                 }else{
                     path = bikes.get(x).getImg(); 
                     path = path.replaceAll("file:///", "");
@@ -105,7 +105,7 @@ public class CarregaImagem {
             for (int x = 0; x < bikes.size(); x++) {
                 String path = bikes.get(x).getIdBikefood().getImg();
                 if(path.contains("br/com/bikefood/image")){
-                    path = caminho+"\\Bikefood\\src\\br\\com\\bikefood\\image\\bfpadrao.jpg";            
+                    path = caminho + "\\BikeWeb\\web\\Image\\bfpadrao.jpg";          
                 }else{
                     path = bikes.get(x).getIdBikefood().getImg(); 
                     path = path.replaceAll("file:///", "");

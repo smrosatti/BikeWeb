@@ -32,22 +32,32 @@ public class IniciaMenuServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try {
-            
+
             Userr u = (Userr) request.getSession().getAttribute("user");
-            System.out.println("UUUUUUUUUUUUUUUU:"+u.getIdType().getId());
-            
-            if(u.getIdType().getId() == 2){
-                
+            System.out.println("UUUUUUUUUUUUUUUU:" + u.getIdType().getId());
+
+            if (u.getIdType().getId() == 2) {
+
+                CarregaImagem c = new CarregaImagem();
+                c.carregabf(u);
+
+                Thread.sleep(2000);
+
                 request.getSession().setAttribute("user", u);
                 RequestDispatcher rd = request.getRequestDispatcher("MenuCli.jsp");
                 rd.forward(request, response);
-                
-            }else if (u.getIdType().getId() == 3){
-                
+
+            } else if (u.getIdType().getId() == 3) {
+
+                CarregaImagem c = new CarregaImagem();
+                c.carregaFav(u);
+
+                Thread.sleep(2000);
+
                 request.getSession().setAttribute("user", u);
                 RequestDispatcher rd = request.getRequestDispatcher("MenuEmp.jsp");
                 rd.forward(request, response);
-            }           
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -4,12 +4,13 @@
     Author     : SARA
 --%>
 
+<%@page import="Model.Userr"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Editar Cliente</title>
+        <title>Editar Empreendedor</title>
         <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
     <link rel="stylesheet" href="css/form.css" type="text/css">
     <script src="js/form.js"></script>
@@ -34,7 +35,7 @@
                 </div>
             </center>
             <div class="w3-bar-block">
-                <a href="IniciaMenuServlet" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Menu/Bikes Favoritos</a>              
+                <a href="IniciaMenuServlet" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Menu Inicial</a>              
                 <a href="index.html" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Sair</a> 
             </div>
         </nav>
@@ -57,7 +58,7 @@
             <div class="container" style=" opacity: 1;">
                 <div class="row">
                     <div class="col-md-12" style="background-color: black; padding: 15px 15px; opacity: 0.9;">
-                        <form action="EditarCliServlet" method="POST" class="form-group">
+                        <form action="EditarEmpServlet" method="POST" class="form-group">
                             <%
                                 try {
                                     Boolean erro = (Boolean) request.getAttribute("erro");
@@ -94,7 +95,14 @@
                                         <label><span class="span-input">E-mail</span></label>
                                     </div>
                                     <div class="group" >
-                                        <input name="pathimg" type="file" accept="image/*" required="">
+                                        <input name="pathimg" type="file" accept="image/*" required="" value="<%=user.getCpf() %>">
+                                    </div>
+                                        
+                                          <div class="group">
+                                        <input name="cpf" type="text" required="" value="<%=user.getCpf() %>">
+                                        <span class="highlight"></span>
+                                        <span class="bar"></span>
+                                        <label><span class="span-input">CPF</span></label>
                                     </div>
 
                                 

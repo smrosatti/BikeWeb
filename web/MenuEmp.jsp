@@ -38,8 +38,8 @@
                 </div>
             </center>
             <div class="w3-bar-block">
-                <a href="MenuEmp.jsp" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Menu</a> 
-                <a href="MeusBikes.jsp" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Cadastrar Bike Foods</a> 
+                <a href="IniciaMenuServlet" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Menu</a> 
+                <a href="IniciaEditarServlet" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Meu Perfil</a> 
                 <a href="ListaBikes.jsp" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Listar Bikefoods</a> 
                 <a href="index.html" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Sair</a> 
             </div>
@@ -171,7 +171,7 @@
                         <li class="w3-padding-16">Tipo de Usuário: <%=us.getIdType().getUserType()%></li>
 
                         <li class="w3-light-grey w3-padding-24">
-                            <button class="w3-button w3-blue w3-padding-large w3-hover-black">Editar Perfil</button>
+                            <button href="IniciaEditarServlet" class="w3-button w3-blue w3-padding-large w3-hover-black">Editar Perfil</button>
                         </li>
                     </ul>
                 </div>
