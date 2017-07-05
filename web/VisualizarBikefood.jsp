@@ -59,7 +59,7 @@
 
                 <a href= "IniciaMenuServlet" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Menu Inicial</a>
                 <a href= "GerarPdfServlet?bike=<%=bf.getId()%>" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Gerar PDF do Cardápio</a>
-                <a href="index.html" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Sair</a> 
+                <a href="SairServlet" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Sair</a> 
             </div>
         </nav>
 

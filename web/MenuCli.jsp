@@ -50,7 +50,7 @@
                 <a href="IniciaMenuServlet" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Menu/Bikes Favoritos</a>
                 <a href="IniciaEditarServlet" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Meu Perfil</a>
                 <a href="IniciaListaBikesServlet" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Listar Bikefoods</a>
-                <a href="index.html" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Sair</a>
+                <a href="SairServlet" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Sair</a>
             </div>
         </nav>
 

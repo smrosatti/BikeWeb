@@ -36,7 +36,7 @@
             </center>
             <div class="w3-bar-block">
                 <a href="IniciaMenuServlet" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Menu Inicial</a>              
-                <a href="index.html" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Sair</a> 
+                <a href="SairServlet" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Sair</a> 
             </div>
         </nav>
 
@@ -61,7 +61,7 @@
                         <form action="EditarEmpServlet" method="POST" class="form-group">
                             <%
                                 try {
-                                    Boolean erro = (Boolean) request.getAttribute("erro");
+                                    Boolean erro = (Boolean) request.getAttribute("erro_senha");
                                     if (erro) {
                             %>
                             <div class="alert alert-warning alert-dismissible" role="alert">
@@ -73,6 +73,23 @@
                                     ex.getMessage();
                                 }
                             %>
+                            
+                            
+                              <%
+                                try {
+                                    Boolean errocpf = (Boolean) request.getAttribute("erro_cpf");
+                                    if (errocpf) {
+                            %>
+                            <div class="alert alert-warning alert-dismissible" role="alert">
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <strong>Erro!</strong> Confirmação da senha incorreta!
+                            </div>
+                            <% }
+                                } catch (Exception ex) {
+                                    ex.getMessage();
+                                }
+                            %>
+                            
                             <div class="form-login" style="margin: 20px;">
                                 <div class="col-md-12">
                                     <!-- Cada campo -->

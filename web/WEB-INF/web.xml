@@ -40,6 +40,14 @@
         <servlet-name>GerarPdfServlet</servlet-name>
         <servlet-class>Servlets.GerarPdfServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>EditarEmpServlet</servlet-name>
+        <servlet-class>Servlets.EditarEmpServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SairServlet</servlet-name>
+        <servlet-class>Servlets.SairServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/LoginServlet</url-pattern>
@@ -79,6 +87,14 @@
     <servlet-mapping>
         <servlet-name>GerarPdfServlet</servlet-name>
         <url-pattern>/GerarPdfServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EditarEmpServlet</servlet-name>
+        <url-pattern>/EditarEmpServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SairServlet</servlet-name>
+        <url-pattern>/SairServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
