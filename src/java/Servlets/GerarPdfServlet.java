@@ -5,10 +5,8 @@
  */
 package Servlets;
 
-import Dal.Dal;
-import Model.Product;
 import java.io.IOException;
-import javax.servlet.RequestDispatcher;
+import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -16,9 +14,9 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author SARA
+ * @author Aluno
  */
-public class ExcluiItemServlet extends HttpServlet {
+public class GerarPdfServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,21 +32,7 @@ public class ExcluiItemServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try {
             
-            int id = Integer.valueOf(request.getParameter("idp"));
-            int bike = Integer.valueOf(request.getParameter("idb"));
-            
-            Dal dal = new Dal();
-            
-            Product p = dal.findProduct(id);
-            
-            dal = new Dal();
-            dal.remove(p, p.getId());
-            
-           
-            response.sendRedirect("VisualizaBikeServlet?id="+bike);       
-            
         } catch (Exception e) {
-            e.printStackTrace();
         }
     }
 

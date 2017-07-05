@@ -68,8 +68,7 @@ public class EditarCliServlet extends HttpServlet {
 
                 LocalDate dt = bt.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 
-                UserType ut = new UserType();
-                ut.setIdType(2L);
+                UserType ut = usuario.getIdType();
 
                 if (gender.equals("male")) {
                     genero.setIdGender(1L);

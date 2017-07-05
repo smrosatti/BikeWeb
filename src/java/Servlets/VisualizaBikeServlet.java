@@ -49,9 +49,6 @@ public class VisualizaBikeServlet extends HttpServlet {
              RequestDispatcher rd = request.getRequestDispatcher("VisualizarBikefood.jsp");
              rd.forward(request, response);
             
-            //Userr u = (Userr) request.getSession().getAttribute("user");
-            
-            
             
         } catch (Exception e) {
             e.printStackTrace();

@@ -35,7 +35,7 @@
 
         <% Userr us = (Userr) request.getSession().getAttribute("user");
             Dal dal = new Dal();
-            ArrayList<Favorites> bikes = new ArrayList(dal.getFav(us));
+            ArrayList<Favorites> bikes = new ArrayList(dal.getFavorites((int)us.getId()));
         %>
 
         <!-- Sidebar/menu -->
