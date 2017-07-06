@@ -37,9 +37,9 @@ public class IniciaMenuServlet extends HttpServlet {
             System.out.println("UUUUUUUUUUUUUUUU:" + u.getIdType().getId());
 
             if (u.getIdType().getId() == 2) {
-
+                
                 CarregaImagem c = new CarregaImagem();
-                c.carregabf(u);
+                c.carregaFav(u);
 
                 Thread.sleep(2000);
 
@@ -48,11 +48,12 @@ public class IniciaMenuServlet extends HttpServlet {
                 rd.forward(request, response);
 
             } else if (u.getIdType().getId() == 3) {
-
+                
                 CarregaImagem c = new CarregaImagem();
-                c.carregaFav(u);
+                c.carregabf(u);
 
                 Thread.sleep(2000);
+                
 
                 request.getSession().setAttribute("user", u);
                 RequestDispatcher rd = request.getRequestDispatcher("MenuEmp.jsp");

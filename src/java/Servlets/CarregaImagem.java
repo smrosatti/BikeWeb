@@ -127,4 +127,21 @@ public class CarregaImagem {
         }
     }
 
+    public void DeletaArquivos(String dir) {
+        try {
+
+            File f = new File(caminho + dir);
+
+            File[] files = f.listFiles();
+
+            for (int i = 1; i < files.length; i++) {
+                File del = files[i];
+                del.delete();
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 }

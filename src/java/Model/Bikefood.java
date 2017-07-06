@@ -24,9 +24,10 @@ import javax.persistence.OneToOne;
  * @author Samuel Leandro
  */
 @Entity
-@NamedQueries(
- @NamedQuery(name = "Bikefood.bikeLoc", query = "select i from Bikefood i where i.idUser = :idUser")
-)
+@NamedQueries({
+ @NamedQuery(name = "Bikefood.bikeLoc", query = "select i from Bikefood i where i.idUser = :idUser"),
+ @NamedQuery(name = "Bikefood.findByType", query = "select i from Bikefood i where i.type = :type")
+})
 public class Bikefood implements Serializable, ModelBase {
 
     @Id
@@ -39,7 +40,7 @@ public class Bikefood implements Serializable, ModelBase {
     private BFType type;
     private String cnpj;
     private String img;
-    @OneToMany (targetEntity = Location.class, mappedBy = "idBikefood", cascade = { CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.DETACH}, fetch = FetchType.EAGER)
+    @OneToMany (targetEntity = Location.class, mappedBy = "idBikefood", cascade = {CascadeType.REFRESH, CascadeType.MERGE, CascadeType.REMOVE}, fetch = FetchType.EAGER)
     private List<Location> locations;
     private String tel;
     
@@ -73,6 +74,18 @@ public class Bikefood implements Serializable, ModelBase {
         this.tel = tel;
     }
 
+    public Bikefood(long idBikefood, String name, Userr idUser, BFType type, String cnpj, String img, String tel) {
+        this.idBikefood = idBikefood;
+        this.name = name;
+        this.idUser = idUser;
+        this.type = type;
+        this.cnpj = cnpj;
+        this.img = img;
+        this.tel = tel;
+    }
+
+    
+    
     public Bikefood() {
     }
 

@@ -33,7 +33,14 @@ public class SairServlet extends HttpServlet {
         try {
             
             request.getSession().removeAttribute("user");
-            response.sendRedirect("index.html");  
+            response.sendRedirect("index.html");
+            
+            CarregaImagem ci = new CarregaImagem();
+            ci.DeletaArquivos("//BikeWeb//web//ImageBikes");
+            
+            ci = new CarregaImagem();
+            ci.DeletaArquivos("//BikeWeb//web//ImageCardapios");
+            
             
         } catch (Exception e) {
             e.printStackTrace();

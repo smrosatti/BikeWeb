@@ -37,7 +37,7 @@ public class Location implements Serializable, ModelBase{
     private City idCity;
     private String number;
 
-    @ManyToOne (cascade = {CascadeType.PERSIST, CascadeType.REFRESH}, fetch = FetchType.EAGER)
+    @ManyToOne (cascade = {CascadeType.REFRESH, CascadeType.REMOVE, CascadeType.MERGE}, fetch = FetchType.EAGER)
     private Bikefood idBikefood;
     
     @Temporal(TemporalType.DATE) 

@@ -180,7 +180,7 @@
                             <li class="w3-padding-16">Tipo de Usuário: <%=us.getIdType().getUserType()%></li>
 
                             <li class="w3-light-grey w3-padding-24">
-                                <button href="IniciaEditarServlet" class="w3-button w3-blue w3-padding-large w3-hover-black">Editar Perfil</button>
+                                <button class="w3-button w3-blue w3-padding-large w3-hover-black"><a class="w3-text-white" href="IniciaEditarServlet">Editar Perfil</a></button>
                             </li>
                         </ul>
                     </div>

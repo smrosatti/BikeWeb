@@ -49,7 +49,7 @@ public class UploadImgServlet extends HttpServlet {
             if (ServletFileUpload.isMultipartContent(request)) {
                 List<FileItem> multiparts = new ServletFileUpload(new DiskFileItemFactory()).parseRequest(request);
 
-                String img = CarregaImagem.caminho+"\\BikeWeb\\web\\Image\\user" +bf.getId()+ ".jpg";
+                String img = "file:///"+CarregaImagem.caminho+"\\BikeWeb\\web\\UploadImagem\\Bike" +bf.getId()+ ".jpg";
 
                 for (FileItem item : multiparts) {
                     if (!item.isFormField()) {

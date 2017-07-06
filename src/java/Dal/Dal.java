@@ -1,5 +1,6 @@
 package Dal;
 
+import Model.BFType;
 import Model.Bikefood;
 import Model.Favorites;
 import Model.ModelBase;
@@ -121,6 +122,19 @@ public class Dal implements Serializable {
             Query query = getEntityManager().createQuery(sql);
             List<Bikefood> list = query.getResultList();
             Bikefood bf = list.get(0);
+            return bf;
+        } finally {
+            closeAll(em);
+        }
+    }
+    
+      public BFType findType(int id) {
+        EntityManager em = getEntityManager();
+        try {
+            String sql = "select t from BFType t where t.idType = " + id;
+            Query query = getEntityManager().createQuery(sql);
+            List<BFType> list = query.getResultList();
+            BFType bf = list.get(0);
             return bf;
         } finally {
             closeAll(em);

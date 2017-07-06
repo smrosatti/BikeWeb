@@ -11,17 +11,24 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Finalizar Cadastro Bike Food</title>
+         <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
+        <link rel="stylesheet" href="css/form.css" type="text/css">
+        <script src="js/form.js"></script>
+        <link href="css/stylish-portfolio.css" rel="stylesheet">
+        <link rel="stylesheet" href="css/w3.css">
+        <link href="bootstrap/css/font-awesome.min.css" rel="stylesheet">
+        <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script src="bootstrap/js/bootstrap.min.js"></script>
+        <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
     </head>
-    
+
     <%
-        Userr us = (Userr) request.getAttribute("user");
-        int bf = Integer.valueOf(request.getParameter("bike"));
-        
-    
+        Userr us = (Userr) request.getSession().getAttribute("user");
     %>
-    
-    <body>
-         <!-- Sidebar/menu -->
+
+    <body style="background: url('./Image/rua.jpg'); background-repeat: no-repeat; background-attachment: fixed; background-size: 100%;" >
+        <!-- Sidebar/menu -->
         <nav class="w3-sidebar w3-black w3-collapse w3-top w3-large w3-padding" style="z-index:3;width:300px;font-weight:bold;" id="mySidebar"><br>
             <a href="javascript:void(0)" onclick="w3_close()" class="w3-button w3-hide-large w3-display-topleft" style="width:100%;font-size:22px">Close Menu</a>
             <center>
@@ -46,14 +53,19 @@
 
         <!-- !PAGE CONTENT! -->
         <div class="w3-main" style="margin-left:340px;margin-right:40px">
-            
-             <div class="row">
-                 <div class="col-md-12" style="background-color: black; padding: 30px 20px; opacity: 0.9;">
-                     <form action="FinalizarCadBikeServlet?bike=" method="POST">
-                         
-                     </form>
-                 </div>
-            
+
+            <div class="row">
+                <div class="col-md-12" style="background-color: black; padding: 30px 20px; opacity: 0.9; margin-top: 50px;">
+                    <form action="UploadImgServlet?bf=${bike}" method="POST" enctype="multipart/form-data" style="margin: 40px;">   
+                        <img name="setimg" src="./Image/bfpadrao.jpg" style="width:30%; opacity: 1;">
+                        <br><br>
+                        <input type="file" name="file" class=" w3-border-white w3-large btn-dark" value="img" ><br>
+
+                        <button type="submit" class="w3-button w3-large btn-primary w3-hover-white" >Confirmar</button>      
+                    </form>
+                </div>
+
+            </div>
         </div>
     </body>
 </html>

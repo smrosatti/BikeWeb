@@ -72,11 +72,11 @@ public class CadBikeServlet extends HttpServlet {
                 City cid = (City) dal.find(idc, "City");
 
                 dal = new Dal();
-                BFType esp = (BFType) dal.find(idesp, "BFType");
+                BFType esp = (BFType) dal.findType(idesp);
 
                 telefone = telefone.replaceFirst("(\\d{2})(\\d{5})(\\d+)", "($1) $2-$3");
 
-                String img = "img";
+                String img = "C:\\Users\\Aluno\\Documents\\NetBeansProjects\\BikeWeb\\web\\Image\\bfpadrao.jpg";
 
                 Date dti = new SimpleDateFormat("yyyy-MM-dd").parse(dtinicio);
                 Date dtf = new SimpleDateFormat("yyyy-MM-dd").parse(dtfinal);
@@ -86,23 +86,28 @@ public class CadBikeServlet extends HttpServlet {
 
                 if (dal.create(bf) == true) {
 
+                    dal = new Dal();
                     Location l = new Location(rua, bairro, pais, est,
                             cid, numero, bf, dti, dtf);
-                    dal = new Dal();
-                    
-                    if (dal.create(l)) {
-                        
+
+                    if (dal.create(l) == true) {
+
                         request.setAttribute("erro_cnpj", false);
-                        RequestDispatcher rd = request.getRequestDispatcher("ImgBikefood?bike=" + bf.getId()+ ".jsp");
-                        rd.forward(request, response);
                         
-                    }else{
+                        System.out.println("IIIIIIIIIIIIIIIIDDDDDDDDDDDDD: "+ bf.getId());
+                        
+                        request.setAttribute("bike", bf.getId());
+                        RequestDispatcher rd = request.getRequestDispatcher("ImgBike.jsp");
+                        rd.forward(request, response);
+
+                    } else {
                         System.out.println("ERRO NO LOCATION");
                     }
-                    
-                    System.out.println("ERRO BIKE");
+
+                } else {
+                    System.out.println("ERRO BIKE FOOD");
                 }
-                
+
             } else {
                 System.out.println("CNPJ Inválido");
                 request.setAttribute("erro_cnpj", true);

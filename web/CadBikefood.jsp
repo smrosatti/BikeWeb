@@ -80,6 +80,17 @@
                 <div class="container" style=" opacity: 1;">
                     <div class="row">
                         <div class="col-md-12" style="background-color: black; padding: 15px 15px; opacity: 0.9;">
+                            
+                            
+                           <!-- <form action="UploadImgServlet?bf=" method="POST" enctype="multipart/form-data" style="margin: 40px;">   
+                                <img name="setimg" src="./Image/bfpadrao.jpg" style="width:30%; opacity: 1;">
+                                <br><br>
+                                <input type="file" name="file" class=" w3-border-white w3-large btn-dark" value="img" ><br>
+                                  
+                               <button type="submit" class="w3-button w3-grey w3-medium w3-hover-blue" >Mudar Imagem</button>      
+                            </form>-->
+                            
+                            
                             <form action="CadBikeServlet" method="POST" class="form-group">
                                 <%                                    try {
                                         Boolean errocnpj = (Boolean) request.getAttribute("erro_cnpj");
@@ -125,7 +136,7 @@
                                                     for (int i = 0; i < types.size(); i++) {
 
                                                 %>
-                                                <option value="<%=types.get(i).getId() %>" ><%=types.get(i).getType()%></option>
+                                                <option value="<%=types.get(i).getId()%>" ><%=types.get(i).getType()%></option>
                                                 <%
                                                     }
                                                 %>
@@ -139,7 +150,7 @@
                                                     for (int i = 0; i < countrys.size(); i++) {
 
                                                 %>
-                                                <option value="<%=countrys.get(i).getId() %>" ><%=countrys.get(i).getCountryName()%></option>
+                                                <option value="<%=countrys.get(i).getId()%>" ><%=countrys.get(i).getCountryName()%></option>
                                                 <%
                                                     }
                                                 %>
@@ -153,7 +164,7 @@
                                                     for (int i = 0; i < states.size(); i++) {
 
                                                 %>
-                                                <option value="<%=states.get(i).getId() %>" ><%=states.get(i).getStateName()%></option>
+                                                <option value="<%=states.get(i).getId()%>" ><%=states.get(i).getStateName()%></option>
                                                 <%
                                                     }
                                                 %>
@@ -167,7 +178,7 @@
                                                     for (int i = 0; i < citys.size(); i++) {
 
                                                 %>
-                                                <option value="<%=citys.get(i).getId() %>" ><%=citys.get(i).getCityName()%></option>
+                                                <option value="<%=citys.get(i).getId()%>" ><%=citys.get(i).getCityName()%></option>
                                                 <%
                                                     }
                                                 %>
@@ -212,14 +223,14 @@
 
                                         <br>
                                         <center>
-                                        <div class="group">
-                                            <button type="submit" class="w3-btn btn-primary w3-large w3-hover-white" >Continuar</button>                             
-                                        </div>    
+                                            <div class="group">
+                                                <button type="submit" class="w3-btn btn-primary w3-large w3-hover-white" >Cadastrar</button>                             
+                                            </div>    
                                         </center>
                                     </div>
 
                                 </div>
-                            </form>
+                            </form>                           
                         </div>
                     </div>
                 </div>
