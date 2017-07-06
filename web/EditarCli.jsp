@@ -94,10 +94,6 @@
                                         <span class="bar"></span>
                                         <label><span class="span-input">E-mail</span></label>
                                     </div>
-                                    <div class="group" >
-                                        <input name="pathimg" type="file" accept="image/*" required="">
-                                    </div>
-
                                 
                                     <div class="group">
                                         <input name="aniversario" type="date" required="" value="<%=user.getBirthday() %>" >

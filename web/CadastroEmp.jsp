@@ -100,9 +100,6 @@
                                         <span class="bar"></span>
                                         <label><span class="span-input">E-mail</span></label>
                                     </div>
-                                    <div class="group" >
-                                        <input name="pathimg" type="file" accept="image/*" >
-                                    </div>
                                     <div class="group">
                                         <input name="cpf" type="text" required="" >
                                         <span class="highlight"></span>

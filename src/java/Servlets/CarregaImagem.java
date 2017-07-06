@@ -28,32 +28,7 @@ import org.apache.commons.fileupload.servlet.ServletFileUpload;
 public class CarregaImagem {
 
     //CAMINHO A SER EDITADO
-    private String caminho = "C:\\Users\\SARA\\Documents\\NetBeansProjects";
-
-    public String upload(HttpServletRequest request, HttpServletResponse response, int i) {
-        try {
-
-            if (ServletFileUpload.isMultipartContent(request)) {
-                List<FileItem> multiparts = new ServletFileUpload(new DiskFileItemFactory()).parseRequest(request);
-
-                String img = "C:\\Users\\User\\Desktop\\BikeWeb\\web\\iImage\\user" + i+ ".jpg";
-
-                for (FileItem item : multiparts) {
-                    if (!item.isFormField()) {
-                        item.write(new File(img));
-                    }
-                }
-                System.out.println("FOI");
-
-                return img;
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        return null;
-    }
+    public static String caminho = "C:\\Users\\Aluno\\Documents\\NetBeansProjects";
 
     public void carregabftodos() {
         try {

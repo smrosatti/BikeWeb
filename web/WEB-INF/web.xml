@@ -52,6 +52,18 @@
         <servlet-name>RemoverFavServlet</servlet-name>
         <servlet-class>Servlets.RemoverFavServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>UploadImgServlet</servlet-name>
+        <servlet-class>Servlets.UploadImgServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CadBikeServlet</servlet-name>
+        <servlet-class>Servlets.CadBikeServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>FinalizaCadBikeServlet</servlet-name>
+        <servlet-class>Servlets.FinalizaCadBikeServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/LoginServlet</url-pattern>
@@ -103,6 +115,18 @@
     <servlet-mapping>
         <servlet-name>RemoverFavServlet</servlet-name>
         <url-pattern>/RemoverFavServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UploadImgServlet</servlet-name>
+        <url-pattern>/UploadImgServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CadBikeServlet</servlet-name>
+        <url-pattern>/CadBikeServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>FinalizaCadBikeServlet</servlet-name>
+        <url-pattern>/FinalizaCadBikeServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

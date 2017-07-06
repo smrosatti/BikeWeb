@@ -99,7 +99,7 @@ public class UserValidation {
         }
     }
 
-    public static boolean isCNPJ(String CNPJ) {
+    public boolean isCNPJ(String CNPJ) {
 // considera-se erro CNPJ's formados por uma sequencia de numeros iguais
         if (CNPJ.equals("00000000000000") || CNPJ.equals("11111111111111")
                 || CNPJ.equals("22222222222222") || CNPJ.equals("33333333333333")

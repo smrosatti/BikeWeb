@@ -47,7 +47,6 @@ public class CadastroCliServlet extends HttpServlet {
             String senha = request.getParameter("senha");
             String consenha = request.getParameter("consenha");
             String aniversario = request.getParameter("aniversario");
-            String img = request.getParameter("pathimg");
             System.out.println(aniversario);
 
             if (senha.equals(consenha)) {
@@ -56,9 +55,8 @@ public class CadastroCliServlet extends HttpServlet {
                 UserValidation uv = new UserValidation();
                 senha = uv.hashpass(senha);
 
-                if (img == null || img.equals(" ")) {
-                    img = "br/com/bikefood/image/user_padrao.png";
-                }
+                String img = "br/com/bikefood/image/user_padrao.png";
+                
 
                 Date bt = new SimpleDateFormat("yyyy-MM-dd").parse(aniversario);
 
@@ -73,16 +71,15 @@ public class CadastroCliServlet extends HttpServlet {
                     genero.setIdGender(2L);
                 }
                 
-                CarregaImagem c = new CarregaImagem();
-                
 
-                Userr u = new Userr(nome, sobrenome, senha, genero, ut, "cliente", email, dt, c.upload(request, response, 1));
+                Userr u = new Userr(nome, sobrenome, senha, genero, ut, "cliente", email, dt, img);
                 Dal dal = new Dal();
                 
                 if(dal.create(u)==true){
                 
                 RequestDispatcher rd = request.getRequestDispatcher("Login.jsp");
                 rd.forward(request, response);
+                
                 }else{
                     System.out.println("usuario já cadastrado");
                     request.setAttribute("erro_cad", true);

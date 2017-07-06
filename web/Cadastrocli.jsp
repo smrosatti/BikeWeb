@@ -88,9 +88,6 @@
                                         <span class="bar"></span>
                                         <label><span class="span-input">E-mail</span></label>
                                     </div>
-                                    <div class="group" >
-                                        <input name="pathimg" type="file" accept="image/*" required="">
-                                    </div>
 
                                 </div>
                                 <div class="col-md-6">

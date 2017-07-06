@@ -47,7 +47,6 @@ public class CadastroEmpServlet extends HttpServlet {
             String senha = request.getParameter("senha");
             String consenha = request.getParameter("consenha");
             String aniversario = request.getParameter("aniversario");
-            String img = request.getParameter("pathimg");
             String cpf = request.getParameter("cpf");
 
             UserValidation uv = new UserValidation();
@@ -59,9 +58,8 @@ public class CadastroEmpServlet extends HttpServlet {
                 r.forward(request, response);
             } else if (senha.equals(consenha)) {
 
-                if (img == null || img.equals(" ")) {
-                    img = "br/com/bikefood/image/user_padrao.png";
-                }
+                String img = "br/com/bikefood/image/user_padrao.png";
+                
                 
                   uv = new UserValidation();
                 String hash = uv.hashpass(senha);

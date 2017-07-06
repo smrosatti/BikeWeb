@@ -6,27 +6,25 @@
 package Servlets;
 
 import Dal.Dal;
-import Model.Gender;
-import Model.UserType;
-import Model.UserValidation;
-import Model.Userr;
+import Model.Bikefood;
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.ZoneId;
-import java.util.Date;
+import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.fileupload.disk.DiskFileItemFactory;
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
 /**
  *
- * @author SARA
+ * @author Aluno
  */
-public class EditarCliServlet extends HttpServlet {
+public class UploadImgServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -41,58 +39,39 @@ public class EditarCliServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try {
-            String nome = request.getParameter("nome");
-            String sobrenome = request.getParameter("sobrenome");
-            String email = request.getParameter("email");
-            String gender = request.getParameter("gender");
-            String senha = request.getParameter("senha");
-            String consenha = request.getParameter("consenha");
-            String aniversario = request.getParameter("aniversario");
-            Userr usuario = (Userr) request.getSession().getAttribute("user");
+            
+            int id = Integer.valueOf(request.getParameter("bf"));
+            
+            Dal dal = new Dal();
+            
+            Bikefood bf = dal.findBike(id);
+            
+            if (ServletFileUpload.isMultipartContent(request)) {
+                List<FileItem> multiparts = new ServletFileUpload(new DiskFileItemFactory()).parseRequest(request);
 
-            System.out.println(aniversario);
+                String img = CarregaImagem.caminho+"\\BikeWeb\\web\\Image\\user" +bf.getId()+ ".jpg";
 
-            if (senha.equals(consenha)) {
-                Gender genero = new Gender();
-
-                UserValidation uv = new UserValidation();
-                senha = uv.hashpass(senha);
-
-                
-                String    img = "br/com/bikefood/image/user_padrao.png";
-                
-
-                Date bt = new SimpleDateFormat("yyyy-MM-dd").parse(aniversario);
-
-                LocalDate dt = bt.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-
-                UserType ut = usuario.getIdType();
-
-                if (gender.equals("male")) {
-                    genero.setIdGender(1L);
-                } else {
-                    genero.setIdGender(2L);
+                for (FileItem item : multiparts) {
+                    if (!item.isFormField()) {
+                        item.write(new File(img));
+                    }
                 }
-
-                Userr u = new Userr(usuario.getId(), nome, sobrenome, senha, genero, ut, "cliente", email, dt, ("file:///" + img));
-                Dal dal = new Dal();
-                dal.edit(u);
                 
-                request.getSession().setAttribute("user", u);
+                bf.setImg(img);
+                dal = new Dal();
+                dal.edit(bf);
+                
+                System.out.println("FOI");
                 
                 RequestDispatcher rd = request.getRequestDispatcher("IniciaMenuServlet");
                 rd.forward(request, response);
-
-            } else {
-                System.out.println("senha não coincide");
-                request.setAttribute("erro", true);
-                RequestDispatcher rd = request.getRequestDispatcher("EditarCli.jsp");
-                rd.forward(request, response);
             }
-        } catch (Exception ee) {
-            ee.printStackTrace();
+
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
+    
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

@@ -152,6 +152,19 @@ public class Dal implements Serializable {
             closeAll(em);
         }
     }
+    
+     public ModelBase find(int id, String classe) {
+        EntityManager em = getEntityManager();
+        try {
+            String sql = ("select t from "+ classe +" t where t.id"+ classe +" = " + id);
+            Query query = getEntityManager().createQuery(sql);
+            List<ModelBase> list = query.getResultList();
+            ModelBase bf = list.get(0);
+            return bf;
+        } finally {
+            closeAll(em);
+        }
+    }
 
     public List<Favorites> getFavorites(int id) {
         EntityManager em = getEntityManager();
