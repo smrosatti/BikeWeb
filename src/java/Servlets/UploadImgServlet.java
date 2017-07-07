@@ -39,30 +39,33 @@ public class UploadImgServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try {
-            
+
             int id = Integer.valueOf(request.getParameter("bf"));
-            
+
             Dal dal = new Dal();
-            
+
             Bikefood bf = dal.findBike(id);
-            
+
             if (ServletFileUpload.isMultipartContent(request)) {
                 List<FileItem> multiparts = new ServletFileUpload(new DiskFileItemFactory()).parseRequest(request);
 
-                String img = "file:///"+CarregaImagem.caminho+"\\BikeWeb\\web\\UploadImagem\\Bike" +bf.getId()+ ".jpg";
+                String img = CarregaImagem.caminho + "\\BikeWeb\\web\\UploadImagem\\bf" + bf.getId() + ".jpg";
 
                 for (FileItem item : multiparts) {
                     if (!item.isFormField()) {
                         item.write(new File(img));
                     }
                 }
-                
-                bf.setImg(img);
+
+                bf.setImg("file:///" + img);
                 dal = new Dal();
                 dal.edit(bf);
-                
+
                 System.out.println("FOI");
-                
+
+                RequestDispatcher rd = request.getRequestDispatcher("IniciaMenuServlet");
+                rd.forward(request, response);
+            } else {
                 RequestDispatcher rd = request.getRequestDispatcher("IniciaMenuServlet");
                 rd.forward(request, response);
             }
@@ -71,7 +74,6 @@ public class UploadImgServlet extends HttpServlet {
             e.printStackTrace();
         }
     }
-    
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

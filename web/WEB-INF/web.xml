@@ -60,6 +60,10 @@
         <servlet-name>CadBikeServlet</servlet-name>
         <servlet-class>Servlets.CadBikeServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>FavoritarServlet</servlet-name>
+        <servlet-class>Servlets.FavoritarServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/LoginServlet</url-pattern>
@@ -119,6 +123,10 @@
     <servlet-mapping>
         <servlet-name>CadBikeServlet</servlet-name>
         <url-pattern>/CadBikeServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>FavoritarServlet</servlet-name>
+        <url-pattern>/FavoritarServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

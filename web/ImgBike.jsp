@@ -57,8 +57,10 @@
             <div class="row">
                 <div class="col-md-12" style="background-color: black; padding: 30px 20px; opacity: 0.9; margin-top: 50px;">
                     <form action="UploadImgServlet?bf=${bike}" method="POST" enctype="multipart/form-data" style="margin: 40px;">   
+                        <h3 class="w3-medium w3-white"><b>Esta é a imagem padrão para Bike Foods</b></h3>
                         <img name="setimg" src="./Image/bfpadrao.jpg" style="width:30%; opacity: 1;">
-                        <br><br>
+                        <br><br><br>
+                        <h3 class="w3-medium w3-white"><b>Escolha uma imagem do seu computador</b></h3><br>
                         <input type="file" name="file" class=" w3-border-white w3-large btn-dark" value="img" ><br>
 
                         <button type="submit" class="w3-button w3-large btn-primary w3-hover-white" >Confirmar</button>      

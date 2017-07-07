@@ -4,6 +4,7 @@
     Author     : SARA
 --%>
 
+<%@page import="Model.Favorites"%>
 <%@page import="Model.Userr"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
@@ -69,6 +70,14 @@
                         <img src="./ImageBikes/bk<%=bikes.get(i).getId() %>.jpg" style="width:100%; height: 300px;">
                         <h2>Nome: <%=bikes.get(i).getName() %></h2>
                          <a href="VisualizaBikeServlet?id=<%= bikes.get(i).getId() %>" class="w3-button w3-black w3-padding-large w3-large">Visualizar</a>
+                         <%
+                         dal = new Dal();
+                         
+                         ArrayList<Favorites> existe = new ArrayList(dal.getFav(u));
+                         
+                         
+                         %>
+                          <a href="FavoritarBikeServlet?id=<%= bikes.get(i).getId() %>" class="w3-button w3-black w3-padding-large w3-large">Visualizar</a>
                          <p>Localização: <%=bikes.get(i).getLocations().get(bikes.get(i).getLocations().size()-1).getStreet() %> - <%=bikes.get(i).getLocations().get(bikes.get(i).getLocations().size()-1).getDistrict()  %>
                             </p>
                         <p>Número: <%=bikes.get(i).getLocations().get(bikes.get(i).getLocations().size()-1).getNumber() %></p>

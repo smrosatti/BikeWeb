@@ -35,6 +35,8 @@ public class IniciaMenuServlet extends HttpServlet {
 
             Userr u = (Userr) request.getSession().getAttribute("user");
             System.out.println("UUUUUUUUUUUUUUUU:" + u.getIdType().getId());
+            
+            
 
             if (u.getIdType().getId() == 2) {
                 
@@ -53,7 +55,6 @@ public class IniciaMenuServlet extends HttpServlet {
                 c.carregabf(u);
 
                 Thread.sleep(2000);
-                
 
                 request.getSession().setAttribute("user", u);
                 RequestDispatcher rd = request.getRequestDispatcher("MenuEmp.jsp");
