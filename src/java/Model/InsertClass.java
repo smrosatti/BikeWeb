@@ -67,6 +67,34 @@ public class InsertClass {
         dal.create(c);
         
         dal = new Dal();
+        
+         City ci1 = new City();
+        ci1.setCityName("Quatro Barras");
+        ci1.setIdState(s);
+        dal.create(ci1);
+        
+        dal = new Dal();
+        
+         City ci2 = new City();
+        ci2.setCityName("Campina");
+        ci2.setIdState(s);
+        dal.create(ci2);
+        
+        dal = new Dal();
+        
+         City ci3 = new City();
+        ci3.setCityName("Piraquara");
+        ci3.setIdState(s);
+        dal.create(ci3);
+        
+        dal = new Dal();
+        
+         City ci4 = new City();
+        ci4.setCityName("Colombo");
+        ci4.setIdState(s);
+        dal.create(ci4);
+        
+        dal = new Dal();
 
         UserType adm = new UserType();
         adm.setUserType("Admin");

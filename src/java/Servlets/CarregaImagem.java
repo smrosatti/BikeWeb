@@ -28,7 +28,7 @@ import org.apache.commons.fileupload.servlet.ServletFileUpload;
 public class CarregaImagem {
 
     //CAMINHO A SER EDITADO
-    public static String caminho = "C:\\Users\\SARA\\Documents\\NetBeansProjects";
+    public static String caminho = "C:\\Users\\Aluno\\Documents\\NetBeansProjects";
 
     public void carregabftodos() {
         try {

@@ -131,7 +131,9 @@
                         <img src="./Image/fd.jpg" alt="Seu Bikefood" style="width:95%">
                         <div class="w3-display-topleft w3-text-black" style="padding:24px 48px">
                             <h1 class="w3-xxxlarge w3-hide-small">Este Bike Food não possui cardápio</h1>
+                            <% if(u.getIdType().getUserType().equals("Emp")){%>
                             <h1 class="w3-xlarge">Obtenha o iBKF para Desktop e cadastre um Cardápio</h1>
+                            <% }%>
                             <p><a href="https://github.com/samuelleand/Bikefood" class="w3-button w3-black w3-padding-large w3-large">Obter o iBKF para Desktop</a></p>
                         </div>
                     </div>

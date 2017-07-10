@@ -46,7 +46,7 @@ public class GerarPdfServlet extends HttpServlet {
             Dal dal = new Dal();
             Bikefood bf = dal.findBike(id);
             
-                File a = new File("C:\\Users\\Aluno\\Downloads\\Cardapio.pdf");
+                File a = new File("C:\\Users\\Aluno\\Downloads\\Cardápio"+bf.getName()+".pdf");
 
                 if (a != null) {
 
